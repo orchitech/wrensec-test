@@ -15,6 +15,7 @@
  */
 package org.wrensecurity.wrenig.test.base;
 
+import java.time.Duration;
 import org.testcontainers.containers.wait.strategy.LogMessageWaitStrategy;
 
 /**
@@ -25,6 +26,7 @@ public class TomcatStartupWaitStrategy extends LogMessageWaitStrategy {
     public TomcatStartupWaitStrategy() {
         withRegEx(".*Server startup in \\[.*\\] milliseconds\\n");
         withTimes(1);
+        withStartupTimeout(Duration.ofSeconds(300));
     }
 
 }
