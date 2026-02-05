@@ -1,0 +1,19 @@
+# Eclipse
+.settings
+.project
+.classpath
+
+# IDEA
+.idea
+*.iml
+
+# VSCode
+.vscode
+
+# Maven
+target/
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+
+# MacOS
+.DS_Store
