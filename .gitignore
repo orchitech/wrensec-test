@@ -10,6 +10,9 @@
 # VSCode
 .vscode
 
+# Checkstyle
+.checkstyle
+
 # Maven
 target/
 pom.xml.releaseBackup

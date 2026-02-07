@@ -1,0 +1,25 @@
+dn: uid=user.250,ou=People,dc=example,dc=com
+changetype: add
+objectClass: top
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: blogger
+mail: user.250@maildomain.net
+initials: ALA
+homePhone: +1 280 375 4325
+pager: +1 850 883 8888
+givenName: Blogger
+employeeNumber: 1
+telephoneNumber: +1 390 103 6917
+mobile: +1 680 734 6300
+sn: Atp
+cn: Blogger Atp
+description: This is the description for Blogger Atp.
+street: 70110 Fourth Street
+st: OH
+postalAddress: Blogger Atp$70110 Fourth Street$New Haven, OH  93694
+uid: user.1
+l: New Haven
+postalCode: 93694
+blog: Test
