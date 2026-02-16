@@ -82,9 +82,10 @@ public class WrenDSContainer extends GenericContainer<WrenDSContainer> {
     }
 
     @Override
-    public void stop() {
+    public synchronized void stop() {
         if (connectionFactory != null) {
             connectionFactory.close();
+            connectionFactory = null;
         }
         super.stop();
     }

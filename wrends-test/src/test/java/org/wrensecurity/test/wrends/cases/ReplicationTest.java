@@ -26,6 +26,7 @@ import static org.wrensecurity.test.wrends.base.WrenDSConstants.ROOT_USER_PASSWO
 import java.util.List;
 import org.forgerock.opendj.ldap.SearchScope;
 import org.forgerock.opendj.ldap.responses.Result;
+import org.junit.jupiter.api.AutoClose;
 import org.junit.jupiter.api.Test;
 import org.testcontainers.containers.Container.ExecResult;
 import org.testcontainers.containers.Network;
@@ -36,6 +37,7 @@ import org.wrensecurity.test.wrends.base.WrenDSContainer;
 @Testcontainers
 public class ReplicationTest {
 
+    @AutoClose
     private static final Network network = Network.newNetwork();
 
     @Container

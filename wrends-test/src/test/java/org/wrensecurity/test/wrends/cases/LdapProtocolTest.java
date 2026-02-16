@@ -15,6 +15,7 @@
  */
 package org.wrensecurity.test.wrends.cases;
 
+import static org.awaitility.Awaitility.await;
 import static org.forgerock.opendj.ldap.requests.Requests.newSearchRequest;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -88,22 +89,24 @@ public class LdapProtocolTest {
                 assertTrue(result.isSuccess(), "Modify request failed");
             }
 
-            // Wait briefly, then cancel the persistent search
-            Thread.sleep(1000);
+            // Verify modification was captured by the persistent search
+            await("Wait for modification capture").untilAsserted(() -> {
+                assertEquals(1, searchHandler.getEntries().size());
+                assertEquals(
+                        """
+                        dn: dc=example,dc=com
+                        objectClass: top
+                        objectClass: domain
+                        dc: example
+                        description: bar
+                        """.trim(),
+                        LDIF.toLDIF(searchHandler.getEntries().get(0)).trim(), "Modification not captured");
+            });
+
             resultPromise.cancel(true);
         }
 
-        // Verify modification was captured by the persistent search
-        assertEquals(1, searchHandler.getEntries().size());
-        assertEquals(
-                """
-                dn: dc=example,dc=com
-                objectClass: top
-                objectClass: domain
-                dc: example
-                description: bar
-                """.trim(),
-                LDIF.toLDIF(searchHandler.getEntries().get(0)).trim(), "Modification not captured");
+
     }
 
 }

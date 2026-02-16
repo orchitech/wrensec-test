@@ -39,8 +39,8 @@ public class CollectingSearchResultHandler implements SearchResultHandler {
         return true;
     }
 
-    public List<SearchResultEntry> getEntries() {
-        return entries;
+    public synchronized List<SearchResultEntry> getEntries() {
+        return List.copyOf(entries);
     }
 
 }

@@ -18,6 +18,7 @@ package org.wrensecurity.test.wrends.cases;
 import static org.awaitility.Awaitility.await;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.wrensecurity.test.wrends.base.WrenDSCommands.assertSuccess;
 import static org.wrensecurity.test.wrends.base.WrenDSCommands.ldapDelete;
 import static org.wrensecurity.test.wrends.base.WrenDSConstants.BASE_DN;
 import static org.wrensecurity.test.wrends.base.WrenDSConstants.ROOT_USER_DN;
@@ -31,6 +32,7 @@ import org.forgerock.opendj.ldap.SearchScope;
 import org.forgerock.opendj.ldap.responses.Result;
 import org.junit.jupiter.api.Test;
 import org.testcontainers.DockerClientFactory;
+import org.testcontainers.containers.Container.ExecResult;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.wrensecurity.test.wrends.base.StringBufferResultCallback;
@@ -52,7 +54,8 @@ public class LdapToolsTest {
         }
 
         // Delete entry
-        ldapDelete(wrends, "uid=user.0,ou=People," + BASE_DN);
+        ExecResult deleteResult = ldapDelete(wrends, "uid=user.0,ou=People," + BASE_DN);
+        assertSuccess(deleteResult, "Failed to delete entry");
 
         // Verify entry is gone
         try (var connection = wrends.getLdapConnection()) {
