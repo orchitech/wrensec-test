@@ -3,3 +3,5 @@ services:
     image: ${WRENIDM_IMAGE:-wrensecurity/wrenidm:latest}
     ports:
       - 8080:8080
+      - 8443:8443
+      - 8444:8444

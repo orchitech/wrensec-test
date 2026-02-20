@@ -1,0 +1,10 @@
+services:
+  wrenidm:
+    extends:
+      file: ../../base/common-services.yml
+      service: wrenidm
+    volumes:
+      - ./conf/authentication.json:/opt/wrenidm/conf/authentication.json:ro
+      - ./mtls/keystore.jceks:/opt/wrenidm/security/keystore.jceks:ro
+      - ./mtls/truststore:/opt/wrenidm/security/truststore:ro
+      - ./script/auth:/opt/wrenidm/script/auth:ro
