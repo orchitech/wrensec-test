@@ -18,11 +18,11 @@ package org.wrensecurity.test.wrends.cases;
 import static org.awaitility.Awaitility.await;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.wrensecurity.test.base.wrends.WrenDSDefaults.BASE_DN;
+import static org.wrensecurity.test.base.wrends.WrenDSDefaults.ROOT_USER_DN;
+import static org.wrensecurity.test.base.wrends.WrenDSDefaults.ROOT_USER_PASSWORD;
 import static org.wrensecurity.test.wrends.base.WrenDSCommands.assertSuccess;
 import static org.wrensecurity.test.wrends.base.WrenDSCommands.ldapDelete;
-import static org.wrensecurity.test.wrends.base.WrenDSConstants.BASE_DN;
-import static org.wrensecurity.test.wrends.base.WrenDSConstants.ROOT_USER_DN;
-import static org.wrensecurity.test.wrends.base.WrenDSConstants.ROOT_USER_PASSWORD;
 
 import com.github.dockerjava.api.command.ExecCreateCmdResponse;
 import java.io.PipedInputStream;
@@ -35,8 +35,8 @@ import org.testcontainers.DockerClientFactory;
 import org.testcontainers.containers.Container.ExecResult;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
+import org.wrensecurity.test.base.wrends.WrenDSContainer;
 import org.wrensecurity.test.wrends.base.StringBufferResultCallback;
-import org.wrensecurity.test.wrends.base.WrenDSContainer;
 
 @Testcontainers
 public class LdapToolsTest {

@@ -13,35 +13,32 @@
  *
  * Copyright 2026 Wren Security
  */
-package org.wrensecurity.test.wrends.cases;
+package org.wrensecurity.test.base.wrends;
 
-import static org.awaitility.Awaitility.await;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.List;
 import org.forgerock.opendj.ldap.SearchScope;
 import org.junit.jupiter.api.Test;
-import org.testcontainers.containers.Container.ExecResult;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.wrensecurity.test.base.wrends.WrenDSContainer;
+import org.wrensecurity.test.base.wrends.WrenDSDefaults;
 
 @Testcontainers
-public class AccessAuditTest {
+public class WrenDSBaseTest {
 
     @Container
     @SuppressWarnings("resource")
-    private static WrenDSContainer wrends = new WrenDSContainer();
+    private static WrenDSContainer wrends = new WrenDSContainer().withSampleData();
 
     @Test
-    public void testAccessLog() throws Exception {
+    public void testBaseSearch() throws Exception {
         try (var connection = wrends.getLdapConnection()) {
-            connection.search("", SearchScope.BASE_OBJECT, "(cn=audit-test)");
+            List<?> entries = connection.search(WrenDSDefaults.BASE_DN, SearchScope.BASE_OBJECT,
+                    "(objectclass=*)");
+            assertEquals(1, entries.size(), "Base entry result expected");
         }
-
-        await("Match search request").untilAsserted(() -> {
-            ExecResult result = wrends.execInContainer("cat", "instance/logs/ldap-access.audit.json");
-            assertTrue(result.getStdout().contains("(cn=audit-test)"));
-        });
     }
 
 }

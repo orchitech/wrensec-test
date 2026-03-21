@@ -16,14 +16,15 @@
 package org.wrensecurity.test.wrends.base;
 
 import static org.junit.jupiter.api.Assertions.fail;
-import static org.wrensecurity.test.wrends.base.WrenDSConstants.ROOT_USER_DN;
-import static org.wrensecurity.test.wrends.base.WrenDSConstants.ROOT_USER_PASSWORD;
+import static org.wrensecurity.test.base.wrends.WrenDSDefaults.ROOT_USER_DN;
+import static org.wrensecurity.test.base.wrends.WrenDSDefaults.ROOT_USER_PASSWORD;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.testcontainers.containers.Container.ExecResult;
+import org.wrensecurity.test.base.wrends.WrenDSContainer;
 
 /**
  * Static helper for common Wren:DS CLI commands executed inside containers.
