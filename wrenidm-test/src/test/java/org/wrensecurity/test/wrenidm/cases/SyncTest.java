@@ -13,7 +13,7 @@
  *
  * Copyright 2026 Wren Security.
  */
-package org.wrensecurity.wrenidm.test.cases;
+package org.wrensecurity.test.wrenidm.cases;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -36,7 +36,7 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.testcontainers.containers.ComposeContainer;
 import org.testcontainers.containers.wait.strategy.HttpWaitStrategy;
 import org.testcontainers.containers.wait.strategy.Wait;
-import org.wrensecurity.wrenidm.test.base.BaseWrenidmTest;
+import org.wrensecurity.test.wrenidm.base.BaseWrenidmTest;
 import tools.jackson.databind.JsonNode;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)

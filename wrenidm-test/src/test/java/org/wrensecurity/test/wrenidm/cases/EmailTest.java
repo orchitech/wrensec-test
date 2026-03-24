@@ -13,7 +13,7 @@
  *
  * Copyright 2026 Wren Security.
  */
-package org.wrensecurity.wrenidm.test.cases;
+package org.wrensecurity.test.wrenidm.cases;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -28,7 +28,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.testcontainers.containers.ComposeContainer;
-import org.wrensecurity.wrenidm.test.base.BaseWrenidmTest;
+import org.wrensecurity.test.wrenidm.base.BaseWrenidmTest;
 import tools.jackson.core.type.TypeReference;
 import tools.jackson.databind.JsonNode;
 

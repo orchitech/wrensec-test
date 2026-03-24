@@ -13,7 +13,7 @@
  *
  * Copyright 2026 Wren Security.
  */
-package org.wrensecurity.wrenidm.test.base;
+package org.wrensecurity.test.wrenidm.base;
 
 import java.net.http.HttpClient;
 import java.time.Duration;

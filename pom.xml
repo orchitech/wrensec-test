@@ -26,6 +26,7 @@
     <modules>
         <module>shared-base</module>
         <module>wrends-test</module>
+        <module>wrenidm-test</module>
     </modules>
 
     <scm>
@@ -49,9 +50,9 @@
             </dependency>
 
             <dependency>
-                <groupId>com.fasterxml.jackson</groupId>
+                <groupId>tools.jackson</groupId>
                 <artifactId>jackson-bom</artifactId>
-                <version>2.21.2</version>
+                <version>3.1.0</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -93,7 +94,7 @@
                 <artifactId>testcontainers-junit-jupiter</artifactId>
                 <version>2.0.3</version>
             </dependency>
-            
+
             <dependency>
                 <groupId>org.wrensecurity.wrends</groupId>
                 <artifactId>opendj-bom</artifactId>
