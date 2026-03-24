@@ -17,13 +17,13 @@
 package org.wrensecurity.test.wrends.cases;
 
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.wrensecurity.test.wrends.base.WrenDSCommands.assertSuccess;
-import static org.wrensecurity.test.wrends.base.WrenDSCommands.dsconfig;
+import static org.wrensecurity.test.base.support.CustomAssertions.assertSuccess;
 
 import org.junit.jupiter.api.Test;
 import org.testcontainers.containers.Container.ExecResult;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
+import org.wrensecurity.test.base.wrends.WrenDSCommands;
 import org.wrensecurity.test.base.wrends.WrenDSContainer;
 
 @Testcontainers
@@ -36,13 +36,13 @@ public class PasswordPolicyTest {
     @Test
     public void testCreatePasswordPolicy() throws Exception {
         // Verify the policy does not exist yet
-        ExecResult checkResult = dsconfig(wrends,
+        ExecResult checkResult = WrenDSCommands.dsconfig(wrends,
                 "get-password-policy-prop",
                 "--policy-name", "Test Password Policy");
         assertNotEquals(0, checkResult.getExitCode(), "Should fail since the policy does not exist");
 
         // Create custom password policy
-        ExecResult createResult = dsconfig(wrends,
+        ExecResult createResult = WrenDSCommands.dsconfig(wrends,
                 "create-password-policy",
                 "--type", "password-policy",
                 "--policy-name", "Test Password Policy",
@@ -54,7 +54,7 @@ public class PasswordPolicyTest {
         assertSuccess(createResult, "Failed to create password policy");
 
         // Verify the policy now exists
-        ExecResult verifyResult = dsconfig(wrends,
+        ExecResult verifyResult = WrenDSCommands.dsconfig(wrends,
                 "get-password-policy-prop",
                 "--policy-name", "Test Password Policy");
         assertSuccess(verifyResult, "Password policy should exist after creation");

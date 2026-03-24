@@ -18,11 +18,10 @@ package org.wrensecurity.test.wrends.cases;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.wrensecurity.test.base.support.CustomAssertions.assertSuccess;
 import static org.wrensecurity.test.base.wrends.WrenDSDefaults.BASE_DN;
 import static org.wrensecurity.test.base.wrends.WrenDSDefaults.ROOT_USER_DN;
 import static org.wrensecurity.test.base.wrends.WrenDSDefaults.ROOT_USER_PASSWORD;
-import static org.wrensecurity.test.wrends.base.WrenDSCommands.assertSuccess;
-import static org.wrensecurity.test.wrends.base.WrenDSCommands.ldapModify;
 
 import org.forgerock.opendj.ldap.ByteString;
 import org.forgerock.opendj.ldap.SearchScope;
@@ -32,6 +31,7 @@ import org.testcontainers.containers.Container.ExecResult;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.MountableFile;
+import org.wrensecurity.test.base.wrends.WrenDSCommands;
 import org.wrensecurity.test.base.wrends.WrenDSContainer;
 
 @Testcontainers
@@ -45,15 +45,15 @@ public class SchemaOperationsTest {
     @Test
     public void testAddCustomAttributeAndObjectClass() throws Exception {
         // Add custom attribute type
-        ExecResult attrResult = ldapModify(wrends, "/tmp/schema/blogUrlAt.ldif");
+        ExecResult attrResult = WrenDSCommands.ldapModify(wrends, "/tmp/schema/blogUrlAt.ldif");
         assertSuccess(attrResult, "Failed to add custom attribute type");
 
         // Add custom object class
-        ExecResult ocResult = ldapModify(wrends, "/tmp/schema/blogUrlOc.ldif");
+        ExecResult ocResult = WrenDSCommands.ldapModify(wrends, "/tmp/schema/blogUrlOc.ldif");
         assertSuccess(ocResult, "Failed to add custom object class");
 
         // Create entry using custom object class
-        ExecResult entryResult = ldapModify(wrends, "/tmp/schema/blogger.ldif");
+        ExecResult entryResult = WrenDSCommands.ldapModify(wrends, "/tmp/schema/blogger.ldif");
         assertSuccess(entryResult, "Failed to create entry with custom object class");
 
         // Search schema for the custom object class

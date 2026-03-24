@@ -17,10 +17,10 @@
 package org.wrensecurity.test.wrends.cases;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.wrensecurity.test.base.support.CustomAssertions.assertSuccess;
 import static org.wrensecurity.test.base.wrends.WrenDSDefaults.BASE_DN;
 import static org.wrensecurity.test.base.wrends.WrenDSDefaults.ROOT_USER_DN;
 import static org.wrensecurity.test.base.wrends.WrenDSDefaults.ROOT_USER_PASSWORD;
-import static org.wrensecurity.test.wrends.base.WrenDSCommands.assertSuccess;
 
 import java.util.List;
 import org.forgerock.opendj.ldap.SearchScope;

@@ -18,11 +18,10 @@ package org.wrensecurity.test.wrends.cases;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.wrensecurity.test.base.support.CustomAssertions.assertSuccess;
 import static org.wrensecurity.test.base.wrends.WrenDSDefaults.BASE_DN;
 import static org.wrensecurity.test.base.wrends.WrenDSDefaults.ROOT_USER_DN;
 import static org.wrensecurity.test.base.wrends.WrenDSDefaults.ROOT_USER_PASSWORD;
-import static org.wrensecurity.test.wrends.base.WrenDSCommands.assertSuccess;
-import static org.wrensecurity.test.wrends.base.WrenDSCommands.dsconfig;
 
 import java.io.IOException;
 import java.util.List;
@@ -31,6 +30,7 @@ import org.junit.jupiter.api.Test;
 import org.testcontainers.containers.Container.ExecResult;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
+import org.wrensecurity.test.base.wrends.WrenDSCommands;
 import org.wrensecurity.test.base.wrends.WrenDSContainer;
 
 @Testcontainers
@@ -69,7 +69,7 @@ public class AccessControlTest {
                 + "changeType||changeTime||targetDN||newRDN||newSuperior||deleteOldRDN\")"
                 + "(version 3.0; acl \"Anonymous read access\"; allow (read,search,compare) userdn=\"ldap:///anyone\";)";
 
-        ExecResult result = dsconfig(wrends,
+        ExecResult result = WrenDSCommands.dsconfig(wrends,
                 "set-access-control-handler-prop",
                 "--remove", "global-aci:" + aciToRemove);
         assertSuccess(result, "Failed to remove anonymous access");

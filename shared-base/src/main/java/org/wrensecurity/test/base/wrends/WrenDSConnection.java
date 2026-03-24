@@ -29,7 +29,7 @@ import org.forgerock.opendj.ldap.responses.Result;
 import org.forgerock.opendj.ldap.responses.SearchResultEntry;
 
 /**
- * Convenient test-oriented LDAP connection wrapper.
+ * Test-oriented LDAP connection wrapper.
  */
 public class WrenDSConnection implements AutoCloseable {
 
