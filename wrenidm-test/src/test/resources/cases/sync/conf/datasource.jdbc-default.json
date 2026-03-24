@@ -1,0 +1,7 @@
+{
+    "jdbcUrl": "jdbc:h2:tcp://h2/~/wrenidm;DB_CLOSE_DELAY=-1;",
+    "driverClass": "org.h2.Driver",
+    "username": "wrenidm",
+    "password": "wrenidm",
+    "databaseName": "wrenidm"
+}

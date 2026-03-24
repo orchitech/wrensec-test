@@ -1,0 +1,38 @@
+services:
+  wrenidm:
+    extends:
+      file: ../../base/common-services.yml
+      service: wrenidm
+    volumes:
+      - ./conf/datasource.jdbc-default.json:/opt/wrenidm/conf/datasource.jdbc-default.json:ro
+      - ./conf/provisioner.openicf-csv.json:/opt/wrenidm/conf/provisioner.openicf-csv.json:ro
+      - ./conf/provisioner.openicf-ldap.json:/opt/wrenidm/conf/provisioner.openicf-ldap.json:ro
+      - ./data:/tmp/data
+      - ./conf/repo.jdbc.json:/opt/wrenidm/conf/repo.jdbc.json:ro
+      - ./conf/sync.json:/opt/wrenidm/conf/sync.json:ro
+    depends_on:
+      ldap:
+        condition: service_healthy
+      h2:
+        condition: service_healthy
+
+  h2:
+    build:
+      context: ./h2
+    healthcheck:
+      test: ["CMD", "java", "-cp", "/h2/h2.jar", "org.h2.tools.Shell", "-url", "jdbc:h2:tcp://localhost/~/wrenidm", "-user", "wrenidm", "-password", "wrenidm", "-sql", "SELECT 1"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  ldap:
+    image: osixia/openldap:1.5.0
+    environment:
+      LDAP_ORGANISATION: "Wren Security"
+      LDAP_DOMAIN: "wrensecurity.org"
+      LDAP_ADMIN_PASSWORD: "password"
+    healthcheck:
+      test: ["CMD", "ldapsearch", "-x", "-H", "ldap://localhost", "-b", "dc=wrensecurity,dc=org", "-D", "cn=admin,dc=wrensecurity,dc=org", "-w", "password"]
+      interval: 5s
+      timeout: 3s
+      retries: 10

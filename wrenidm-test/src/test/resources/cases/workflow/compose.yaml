@@ -1,0 +1,7 @@
+services:
+  wrenidm:
+    extends:
+      file: ../../base/common-services.yml
+      service: wrenidm
+    volumes:
+      - ./workflow:/opt/wrenidm/workflow:ro
