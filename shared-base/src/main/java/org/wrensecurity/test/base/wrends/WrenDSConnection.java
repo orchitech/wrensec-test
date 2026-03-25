@@ -13,7 +13,8 @@
  *
  * Copyright 2026 Wren Security
  */
-package org.wrensecurity.test.wrends.base;
+
+package org.wrensecurity.test.base.wrends;
 
 import static org.forgerock.opendj.ldap.requests.Requests.newSearchRequest;
 
@@ -34,6 +35,9 @@ public class WrenDSConnection implements AutoCloseable {
 
     private final Connection connection;
 
+    /**
+     * Create new connection wrapper for the given connection.
+     */
     public WrenDSConnection(Connection connection) {
         this.connection = connection;
     }

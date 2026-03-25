@@ -1,0 +1,8 @@
+services:
+  wrenidm:
+    extends:
+      file: ../../base/common-services.yml
+      service: wrenidm
+    volumes:
+      - ./conf/endpoint-custom.json:/opt/wrenidm/conf/endpoint-custom.json:ro
+      - ./script/handle-custom.js:/opt/wrenidm/script/endpoint/handle-custom.js:ro

@@ -13,14 +13,15 @@
  *
  * Copyright 2026 Wren Security
  */
-package org.wrensecurity.test.wrends.base;
+
+package org.wrensecurity.test.base.wrends;
 
 /**
- * Common shared test constants.
+ * Common default Wren:DS test constants.
  */
-public final class WrenDSConstants {
+public final class WrenDSDefaults {
 
-    private WrenDSConstants() {
+    private WrenDSDefaults() {
     }
 
     /**

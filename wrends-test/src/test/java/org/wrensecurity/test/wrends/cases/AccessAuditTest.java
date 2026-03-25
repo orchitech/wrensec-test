@@ -23,7 +23,7 @@ import org.junit.jupiter.api.Test;
 import org.testcontainers.containers.Container.ExecResult;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
-import org.wrensecurity.test.wrends.base.WrenDSContainer;
+import org.wrensecurity.test.base.wrends.WrenDSContainer;
 
 @Testcontainers
 public class AccessAuditTest {

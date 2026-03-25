@@ -1,0 +1,5 @@
+services:
+  wrenidm:
+    image: ${WRENIDM_IMAGE:-wrensecurity/wrenidm:latest}
+    ports:
+      - 8080:8080

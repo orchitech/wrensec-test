@@ -1,0 +1,5 @@
+{
+    "context": "endpoint/custom/*",
+    "type": "text/javascript",
+    "file": "endpoint/handle-custom.js"
+}

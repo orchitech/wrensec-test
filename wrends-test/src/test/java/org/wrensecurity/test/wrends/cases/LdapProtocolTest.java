@@ -19,9 +19,9 @@ import static org.awaitility.Awaitility.await;
 import static org.forgerock.opendj.ldap.requests.Requests.newSearchRequest;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.wrensecurity.test.wrends.base.WrenDSConstants.BASE_DN;
-import static org.wrensecurity.test.wrends.base.WrenDSConstants.ROOT_USER_DN;
-import static org.wrensecurity.test.wrends.base.WrenDSConstants.ROOT_USER_PASSWORD;
+import static org.wrensecurity.test.base.wrends.WrenDSDefaults.BASE_DN;
+import static org.wrensecurity.test.base.wrends.WrenDSDefaults.ROOT_USER_DN;
+import static org.wrensecurity.test.base.wrends.WrenDSDefaults.ROOT_USER_PASSWORD;
 
 import java.util.List;
 import org.forgerock.opendj.ldap.LdapPromise;
@@ -33,8 +33,8 @@ import org.forgerock.opendj.ldif.LDIF;
 import org.junit.jupiter.api.Test;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
+import org.wrensecurity.test.base.wrends.WrenDSContainer;
 import org.wrensecurity.test.wrends.base.CollectingSearchResultHandler;
-import org.wrensecurity.test.wrends.base.WrenDSContainer;
 
 @Testcontainers
 public class LdapProtocolTest {

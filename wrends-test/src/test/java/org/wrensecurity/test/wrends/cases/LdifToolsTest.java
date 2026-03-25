@@ -16,10 +16,10 @@
 package org.wrensecurity.test.wrends.cases;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.wrensecurity.test.base.wrends.WrenDSDefaults.BASE_DN;
+import static org.wrensecurity.test.base.wrends.WrenDSDefaults.ROOT_USER_DN;
+import static org.wrensecurity.test.base.wrends.WrenDSDefaults.ROOT_USER_PASSWORD;
 import static org.wrensecurity.test.wrends.base.WrenDSCommands.assertSuccess;
-import static org.wrensecurity.test.wrends.base.WrenDSConstants.BASE_DN;
-import static org.wrensecurity.test.wrends.base.WrenDSConstants.ROOT_USER_DN;
-import static org.wrensecurity.test.wrends.base.WrenDSConstants.ROOT_USER_PASSWORD;
 
 import java.util.List;
 import org.forgerock.opendj.ldap.SearchScope;
@@ -28,7 +28,7 @@ import org.testcontainers.containers.Container.ExecResult;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.MountableFile;
-import org.wrensecurity.test.wrends.base.WrenDSContainer;
+import org.wrensecurity.test.base.wrends.WrenDSContainer;
 
 @Testcontainers
 public class LdifToolsTest {

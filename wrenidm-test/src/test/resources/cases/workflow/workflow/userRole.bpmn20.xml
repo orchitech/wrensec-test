@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions id="definitions" targetNamespace="http://flowable.org/bpmn20" xmlns:flowable="http://flowable.org/bpmn" xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <process id="userRole" name="User-Role Assignment Workflow" isExecutable="true">
+    <!-- Start event -->
+    <startEvent id="start" name="start"></startEvent>
+    <!-- Sequence flow 1 from 'start' to 'approval' -->
+    <sequenceFlow id="flow1" sourceRef="start" targetRef="approval"></sequenceFlow>
+    <!-- Approval by administrator -->
+    <userTask id="approval" name="approval" flowable:assignee="openidm-admin">
+      <extensionElements>
+        <flowable:formProperty id="result" name="Decision" type="enum" required="true">
+          <flowable:value id="approve" name="Approve"></flowable:value>
+          <flowable:value id="reject" name="Reject"></flowable:value>
+        </flowable:formProperty>
+        <flowable:taskListener event="complete" class="org.flowable.engine.impl.bpmn.listener.ScriptTaskListener">
+          <flowable:field name="script">
+            <flowable:string>result</flowable:string>
+          </flowable:field>
+          <flowable:field name="language" stringValue="groovy" />
+          <flowable:field name="resultVariable" stringValue="decision" />
+        </flowable:taskListener>
+      </extensionElements>
+    </userTask>
+    <!-- Sequence flow 2 from 'approval' to 'approvalGw' -->
+    <sequenceFlow id="flow2" sourceRef="approval" targetRef="approvalGw"></sequenceFlow>
+    <!-- Gateway for approval result -->
+    <exclusiveGateway id="approvalGw" name="Approval decision gateway" />
+    <!-- Sequence flow 3 from 'approvalGw' to 'createAssignment' when assignment was approved -->
+    <sequenceFlow id="flow3" sourceRef="approvalGw" targetRef="createAssignment">
+      <conditionExpression xsi:type="tFormalExpression">${decision == 'approve'}</conditionExpression>
+    </sequenceFlow>
+    <!-- Sequence flow 4 from 'approvalGw' to 'end' when assignment was rejected -->
+    <sequenceFlow id="flow4" sourceRef="approvalGw" targetRef="end">
+      <conditionExpression xsi:type="tFormalExpression">${decision == 'reject'}</conditionExpression>
+    </sequenceFlow>
+    <!-- Create assignment between user and role -->
+    <scriptTask id="createAssignment" name="Create user-role assignment" scriptFormat="groovy">
+      <script>
+        // Prepare basic assignment operation
+        def assignment = [
+          operation: 'add',
+          field: '/roles/-',
+          value: [
+            _ref: roleId
+          ]
+        ]
+        openidm.patch(userId, null, [assignment])
+      </script>
+    </scriptTask>
+    <!-- Sequence flow 5 from 'createAssignment' to 'end' -->
+    <sequenceFlow id="flow5" sourceRef="createAssignment" targetRef="end"></sequenceFlow>
+    <!-- End event -->
+    <endEvent id="end" name="end"></endEvent>
+  </process>
+</definitions>
