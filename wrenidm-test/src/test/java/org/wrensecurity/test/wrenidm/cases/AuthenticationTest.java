@@ -13,6 +13,7 @@
  *
  * Copyright 2026 Wren Security.
  */
+
 package org.wrensecurity.test.wrenidm.cases;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -124,16 +125,12 @@ public class AuthenticationTest extends BaseWrenidmTest {
     private static final class TrustAllManager extends X509ExtendedTrustManager {
 
         @Override
-        public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {
-        }
-
-        @Override
-        public void checkServerTrusted(X509Certificate[] chain, String authType) throws CertificateException {
-        }
-
-        @Override
         public X509Certificate[] getAcceptedIssuers() {
             return new X509Certificate[0];
+        }
+
+        @Override
+        public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {
         }
 
         @Override
@@ -142,12 +139,16 @@ public class AuthenticationTest extends BaseWrenidmTest {
         }
 
         @Override
-        public void checkServerTrusted(X509Certificate[] chain, String authType, Socket socket)
+        public void checkClientTrusted(X509Certificate[] chain, String authType, SSLEngine engine)
                 throws CertificateException {
         }
 
         @Override
-        public void checkClientTrusted(X509Certificate[] chain, String authType, SSLEngine engine)
+        public void checkServerTrusted(X509Certificate[] chain, String authType) throws CertificateException {
+        }
+
+        @Override
+        public void checkServerTrusted(X509Certificate[] chain, String authType, Socket socket)
                 throws CertificateException {
         }
 

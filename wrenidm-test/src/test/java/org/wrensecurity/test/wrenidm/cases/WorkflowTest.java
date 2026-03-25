@@ -13,6 +13,7 @@
  *
  * Copyright 2026 Wren Security.
  */
+
 package org.wrensecurity.test.wrenidm.cases;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -24,30 +25,33 @@ import java.io.File;
 import java.net.URI;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestMethodOrder;
-import org.junit.jupiter.api.MethodOrderer;
 import org.testcontainers.containers.ComposeContainer;
 import org.wrensecurity.test.wrenidm.base.BaseWrenidmTest;
 import tools.jackson.databind.JsonNode;
 
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 /**
  * @deprecated This class needs to be refactored.
  */
+@Deprecated
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class WorkflowTest extends BaseWrenidmTest {
 
     private static final int MAX_WORKFLOW_COMPLETE_WAIT_SECONDS = 60;
 
     private String onboardingDefId;
+
     private String crudWorkflowId;
+
     private String rejectWorkflowId;
+
     private String rejectTaskId;
 
     private JsonNode waitForWorkflowHistoryDecision(String workflowId, int timeoutSeconds) throws Exception {
@@ -141,6 +145,7 @@ public class WorkflowTest extends BaseWrenidmTest {
             }
             """;
 
+    @Deprecated
     @BeforeAll
     public void init() throws InterruptedException {
         environment = new ComposeContainer(new File("src/test/resources/cases/workflow/compose.yaml"));
@@ -148,6 +153,7 @@ public class WorkflowTest extends BaseWrenidmTest {
         environment.start();
     }
 
+    @Deprecated
     @AfterAll
     public void teardown() {
         if (environment != null) {
@@ -155,6 +161,7 @@ public class WorkflowTest extends BaseWrenidmTest {
         }
     }
 
+    @Deprecated
     @Test
     @Order(1)
     public void testSetup() throws Exception {
@@ -179,6 +186,7 @@ public class WorkflowTest extends BaseWrenidmTest {
         assertEquals(201, createRoleResp.statusCode());
     }
 
+    @Deprecated
     @Test
     @Order(2)
     public void testUserRole() throws Exception {
@@ -247,6 +255,7 @@ public class WorkflowTest extends BaseWrenidmTest {
         assertEquals("managed/role/employee", finalRolesBody.get("result").get(0).get("_ref").asString());
     }
 
+    @Deprecated
     @Test
     @Order(3)
     public void testOnboarding() throws Exception {
@@ -313,6 +322,7 @@ public class WorkflowTest extends BaseWrenidmTest {
         assertEquals("onboarding", userBody.get("_id").asString());
     }
 
+    @Deprecated
     @Test
     @Order(4)
     public void testProcessDefinitionsQueryAndRead() throws Exception {
@@ -354,6 +364,7 @@ public class WorkflowTest extends BaseWrenidmTest {
         assertEquals(6, defFieldsBody.get("formProperties").size());
     }
 
+    @Deprecated
     @Test
     @Order(5)
     public void testProcessInstanceCrud() throws Exception {
@@ -408,6 +419,7 @@ public class WorkflowTest extends BaseWrenidmTest {
         assertEquals(200, deleteInstanceResp.statusCode());
     }
 
+    @Deprecated
     @Test
     @Order(6)
     public void testDeletedProcessInstanceHistory() throws Exception {
@@ -424,6 +436,7 @@ public class WorkflowTest extends BaseWrenidmTest {
         assertEquals("Deleted by Wren:IDM.", deletedHistoryBody.get("deleteReason").asString());
     }
 
+    @Deprecated
     @Test
     @Order(7)
     public void testTaskInstanceClaimCompleteAndHistoryRejectPath() throws Exception {

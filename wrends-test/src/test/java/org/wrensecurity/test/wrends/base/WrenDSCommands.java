@@ -13,6 +13,7 @@
  *
  * Copyright 2026 Wren Security
  */
+
 package org.wrensecurity.test.wrends.base;
 
 import static org.junit.jupiter.api.Assertions.fail;

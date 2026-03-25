@@ -13,6 +13,7 @@
  *
  * Copyright 2026 Wren Security.
  */
+
 package org.wrensecurity.test.wrenidm.cases;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -23,11 +24,11 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestMethodOrder;
-import org.junit.jupiter.api.MethodOrderer;
 import org.testcontainers.containers.ComposeContainer;
 import org.wrensecurity.test.wrenidm.base.BaseWrenidmTest;
 import tools.jackson.databind.JsonNode;

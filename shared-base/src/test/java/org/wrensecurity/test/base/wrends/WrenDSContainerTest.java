@@ -13,6 +13,7 @@
  *
  * Copyright 2026 Wren Security
  */
+
 package org.wrensecurity.test.base.wrends;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -22,11 +23,12 @@ import org.forgerock.opendj.ldap.SearchScope;
 import org.junit.jupiter.api.Test;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
-import org.wrensecurity.test.base.wrends.WrenDSContainer;
-import org.wrensecurity.test.base.wrends.WrenDSDefaults;
 
+/**
+ * Basic {@link WrenDSContainer} bootstrap test.
+ */
 @Testcontainers
-public class WrenDSBaseTest {
+public class WrenDSContainerTest {
 
     @Container
     @SuppressWarnings("resource")

@@ -13,6 +13,7 @@
  *
  * Copyright 2026 Wren Security.
  */
+
 package org.wrensecurity.test.wrenidm.cases;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -54,7 +55,7 @@ public class SyncTest extends BaseWrenidmTest {
         }
         """;
 
-    private final HttpWaitStrategy LDAP_PROVISIONER_WAIT_STRATEGY = Wait
+    private static final HttpWaitStrategy LDAP_PROVISIONER_WAIT_STRATEGY = Wait
             .forHttp("/openidm/system/ldap?_action=test")
             .withHeader("Authorization", ADMIN_AUTHORIZATION_HEADER_VALUE)
             .forStatusCode(200)
@@ -142,9 +143,9 @@ public class SyncTest extends BaseWrenidmTest {
     @Order(5)
     public void testImplicitSync() throws Exception {
         String filter = URLEncoder.encode(
-                "/mapping eq \"managedUser_ldapAccount\" and " +
-                "/sourceObjectId sw \"managed/user/sync\" and " +
-                "/status eq \"SUCCESS\"", StandardCharsets.UTF_8);
+                "/mapping eq \"managedUser_ldapAccount\" and "
+                + "/sourceObjectId sw \"managed/user/sync\" and "
+                + "/status eq \"SUCCESS\"", StandardCharsets.UTF_8);
 
         int attempts = 100;
 

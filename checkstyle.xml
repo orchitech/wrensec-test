@@ -21,10 +21,11 @@
         <property name="eachLine" value="true" />
     </module>
 
+    <module name="SuppressionFilter">
+        <property name="file" value="checkstyle-suppressions.xml"/>
+    </module>
+
     <module name="TreeWalker">
-        <module name="SuppressionXpathFilter">
-            <property name="file" value="checkstyle-suppressions.xml"/>
-        </module>
         <module name="SuppressionCommentFilter"/>
         <module name="OuterTypeFilename" />
         <module name="AvoidStarImport" />
@@ -34,7 +35,9 @@
         <module name="LeftCurly" />
         <module name="RightCurly" />
         <module name="WhitespaceAfter" />
-        <module name="WhitespaceAround" />
+        <module name="WhitespaceAround">
+            <property name="allowEmptyTypes" value="true" />
+        </module>
         <module name="OneStatementPerLine" />
         <module name="MultipleVariableDeclarations" />
         <module name="ArrayTypeStyle" />
@@ -95,7 +98,7 @@
         </module>
         <module name="MissingJavadocMethod">
             <property name="allowMissingPropertyJavadoc" value="true" />
-            <property name="allowedAnnotations" value="Override, Test" />
+            <property name="allowedAnnotations" value="AfterAll, BeforeAll, Override, Test" />
         </module>
         <module name="MissingJavadocType">
             <property name="skipAnnotations" value="RestController" />

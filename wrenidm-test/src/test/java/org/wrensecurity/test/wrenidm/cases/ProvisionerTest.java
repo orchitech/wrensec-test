@@ -13,6 +13,7 @@
  *
  * Copyright 2026 Wren Security.
  */
+
 package org.wrensecurity.test.wrenidm.cases;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -36,7 +37,7 @@ import tools.jackson.databind.JsonNode;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class ProvisionerTest extends BaseWrenidmTest {
 
-    private final HttpWaitStrategy LDAP_PROVISIONER_WAIT_STRATEGY = Wait
+    private static final HttpWaitStrategy LDAP_PROVISIONER_WAIT_STRATEGY = Wait
             .forHttp("/openidm/system/ldap?_action=test")
             .withHeader("Authorization", ADMIN_AUTHORIZATION_HEADER_VALUE)
             .forStatusCode(200)

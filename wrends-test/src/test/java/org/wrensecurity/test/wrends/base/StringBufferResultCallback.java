@@ -13,6 +13,7 @@
  *
  * Copyright 2026 Wren Security
  */
+
 package org.wrensecurity.test.wrends.base;
 
 import com.github.dockerjava.api.async.ResultCallbackTemplate;
@@ -25,10 +26,16 @@ public class StringBufferResultCallback extends ResultCallbackTemplate<StringBuf
 
     private final StringBuffer output;
 
+    /**
+     * Create new callback instance with empty string buffer.
+     */
     public StringBufferResultCallback() {
         this(new StringBuffer());
     }
 
+    /**
+     * Create new callback instance with the given string buffer.
+     */
     public StringBufferResultCallback(StringBuffer output) {
         this.output = output;
     }

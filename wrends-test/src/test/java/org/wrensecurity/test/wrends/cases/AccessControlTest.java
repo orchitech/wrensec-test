@@ -13,6 +13,7 @@
  *
  * Copyright 2026 Wren Security
  */
+
 package org.wrensecurity.test.wrends.cases;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -64,9 +65,9 @@ public class AccessControlTest {
     }
 
     private void removeAnonymousAccess() throws IOException, InterruptedException {
-        String aciToRemove = "(targetattr!=\"userPassword||authPassword||debugsearchindex||changes||changeNumber||" +
-                "changeType||changeTime||targetDN||newRDN||newSuperior||deleteOldRDN\")" +
-                "(version 3.0; acl \"Anonymous read access\"; allow (read,search,compare) userdn=\"ldap:///anyone\";)";
+        String aciToRemove = "(targetattr!=\"userPassword||authPassword||debugsearchindex||changes||changeNumber||"
+                + "changeType||changeTime||targetDN||newRDN||newSuperior||deleteOldRDN\")"
+                + "(version 3.0; acl \"Anonymous read access\"; allow (read,search,compare) userdn=\"ldap:///anyone\";)";
 
         ExecResult result = dsconfig(wrends,
                 "set-access-control-handler-prop",
