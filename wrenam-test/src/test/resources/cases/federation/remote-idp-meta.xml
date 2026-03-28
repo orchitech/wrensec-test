@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<EntityDescriptor entityID="https://wrenam.wrensecurity.remote/auth/saml/test-idp" xmlns="urn:oasis:names:tc:SAML:2.0:metadata">
+    <IDPSSODescriptor WantAuthnRequestsSigned="true" protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+        <KeyDescriptor use="signing">
+            <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+                <ds:X509Data>
+                    <ds:X509Certificate>
+MIIFATCCAumgAwIBAgIINGeyUFaRduUwDQYJKoZIhvcNAQEMBQAwLjEWMBQGA1UEChMNd3JlbiBz
+ZWN1cml0eTEUMBIGA1UEAxMLdGVzdC1yZW1vdGUwIBcNMjYwMzI4MTYwOTUyWhgPMjEyNjAzMDQx
+NjA5NTJaMC4xFjAUBgNVBAoTDXdyZW4gc2VjdXJpdHkxFDASBgNVBAMTC3Rlc3QtcmVtb3RlMIIC
+IjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAugJNzqlVmOfsJmuUHru5WQpn3fD/3rudKCr7
+r1Hxf5SSpRGeON7MJwe6R9PpQkbLvst2IMU5Kr5dTimNllHDLQ4pjfNeWX44zjOuPB66uDNV4WKC
+pKAugMCy/tTZ7axqzCYf2Wo+vbBMswJs8MeJfzCcTb2WiUKtE+f7oMTqy4N0rh1ESkqdOmthoiwY
+Tx+JJXlCN85j7GR7oaSFh3D+niPcuRkzjL5xP9LyAA0aqOBuOJ81+cTzOQ5ioxoaODWHEN/k8JdQ
+F+IXiq04h3VNVVzVNRrd4Yr2kMzMZwO4O5rwFHodC5CZfSNLJkqcbGhOeTsVraEzDOnGane9KE/i
++6rR6Y3LpDgLaLezxUAQS6ljBm7Ok/iIsozuVodiRKL4/Oru/Y5f8fYMAlgSxnL6XzChqSLHG8dM
+bjdakEN0GApD+JMMv2Un3FapSRZ0wkxozhTB0ikK6Ez+LwdYE4XbeTgFwY/t2G+3Egp1WAqZ2Ca4
+Iu0f3j0zlQsB+nzLrvBaZiKtHAKiWPPebX7UMLM3KxxvJsi5ZE6F2tA1yb+767lubJ9YXtGn9uzD
+zXFgj7iZS+WUb0DFdlD3ra6zHmpkTgH1QysjVpKKCDg8LXsPUwW5lCQlafEoyZPLMVztFRPpEzUA
+EJWeQEgACY4bWk59mLz2G6a3SV7EVPKdltf1MTcCAwEAAaMhMB8wHQYDVR0OBBYEFMSW8tvZH/2B
+DzgEhgIYEl3QB1KdMA0GCSqGSIb3DQEBDAUAA4ICAQCfPvZwMd7VSh6w6ESwtHZm0mB61rEm3wnz
+xPEg5oJyaAz6Th2AuvsowGQIgb2hWWhlefE7/bItter0fFraK6l4hRzH9U/XJLmF3B8g0wMwhQ54
+ug4zQ7daBHYxCcsjp7CgzBSCFMnSppebgf4n9XbgmZpOD5aoQcJxUPp0VCMURR1p7v0fiZy5T16g
+pLI7x1gzXjZ8RnxW8PeuPZp7WIwp7MxuDYtoCsDKHhSVGVeAefKMtSvoXpoUhi4jS8KUXUgn8NTL
+yfUcMUQgyDV/bmpQc1dONnXOMldikQaOb1tHJMaHnjVZiFgP7vAUAjj1fWT7NQH88L0dCSiWJQSV
+cik7VVfJFASFM72TVN0a07fIlWaNeP0DAHFbizK4u9PnI3Fr4GnisKgejSCmL8Eym25InQFxEZ1+
+ZEW+ZQsGQ8mj6QIQ01xP+CjmZ1V3562a0twDKCwcZFHUp/RxzfiV2Jkw2FLMfT/N03qKHdQhfIqS
+aoQp92yUR6Ruamm6Agb5tIhHvcKVyLFdJP7R7BmV13oMWm3IJRGnyeQsGXv6UJ/sjVdDrdFkjkgi
+wa7LnDubiWwJ1DSw/1aFNGrRv1rXPdF2FsLSI0b8NGfMqoZB0KSshONTmg4Ak64CYxAFcF6ImY6K
+jo8z0NKa3RiIlq9iOTI0jCBJfLe32mptp9J0qR4txw==
+                    </ds:X509Certificate>
+                </ds:X509Data>
+            </ds:KeyInfo>
+        </KeyDescriptor>
+        <ArtifactResolutionService index="0" isDefault="false" Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="http://wrenam.wrensecurity.remote:8080/auth/ArtifactResolver/metaAlias/federation/remote-idp"/>
+        <SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="http://wrenam.wrensecurity.remote:8080/auth/IDPSloRedirect/metaAlias/federation/remote-idp" ResponseLocation="http://wrenam.wrensecurity.remote:8080/auth/IDPSloRedirect/metaAlias/federation/remote-idp"/>
+        <SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="http://wrenam.wrensecurity.remote:8080/auth/IDPSloPOST/metaAlias/federation/remote-idp" ResponseLocation="http://wrenam.wrensecurity.remote:8080/auth/IDPSloPOST/metaAlias/federation/remote-idp"/>
+        <SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="http://wrenam.wrensecurity.remote:8080/auth/IDPSloSoap/metaAlias/federation/remote-idp"/>
+        <ManageNameIDService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="http://wrenam.wrensecurity.remote:8080/auth/IDPMniRedirect/metaAlias/federation/remote-idp" ResponseLocation="http://wrenam.wrensecurity.remote:8080/auth/IDPMniRedirect/metaAlias/federation/remote-idp"/>
+        <ManageNameIDService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="http://wrenam.wrensecurity.remote:8080/auth/IDPMniPOST/metaAlias/federation/remote-idp" ResponseLocation="http://wrenam.wrensecurity.remote:8080/auth/IDPMniPOST/metaAlias/federation/remote-idp"/>
+        <ManageNameIDService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="http://wrenam.wrensecurity.remote:8080/auth/IDPMniSoap/metaAlias/federation/remote-idp"/>
+        <NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</NameIDFormat>
+        <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="http://wrenam.wrensecurity.remote:8080/auth/SSORedirect/metaAlias/federation/remote-idp"/>
+        <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="http://wrenam.wrensecurity.remote:8080/auth/SSOPOST/metaAlias/federation/remote-idp"/>
+        <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="http://wrenam.wrensecurity.remote:8080/auth/SSOSoap/metaAlias/federation/remote-idp"/>
+        <NameIDMappingService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="http://wrenam.wrensecurity.remote:8080/auth/NIMSoap/metaAlias/federation/remote-idp"/>
+        <AssertionIDRequestService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="http://wrenam.wrensecurity.remote:8080/auth/AIDReqSoap/IDPRole/metaAlias/federation/remote-idp"/>
+        <AssertionIDRequestService Binding="urn:oasis:names:tc:SAML:2.0:bindings:URI" Location="http://wrenam.wrensecurity.remote:8080/auth/AIDReqUri/IDPRole/metaAlias/federation/remote-idp"/>
+    </IDPSSODescriptor>
+</EntityDescriptor>

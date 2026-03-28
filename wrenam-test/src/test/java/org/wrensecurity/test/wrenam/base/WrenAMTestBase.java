@@ -21,6 +21,7 @@ import static org.wrensecurity.test.base.support.CustomAssertions.assertSuccess;
 import java.net.URI;
 import org.junit.jupiter.api.BeforeAll;
 import org.testcontainers.containers.Container.ExecResult;
+import org.testcontainers.containers.ContainerState;
 import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.containers.Network;
 import org.testcontainers.containers.wait.strategy.Wait;
@@ -40,6 +41,10 @@ import tools.jackson.databind.ObjectMapper;
  * environment bootstrap/shutdown by switching to <i>JUnit Platform Suite Engine</i>.
  */
 public abstract class WrenAMTestBase {
+
+    protected static final String TEST_USERNAME = "john";
+
+    protected static final String TEST_PASSWORD = "password";
 
     protected static final Network network = Network.newNetwork();
 
@@ -92,21 +97,35 @@ public abstract class WrenAMTestBase {
     protected final ObjectMapper objectMapper = new ObjectMapper();
 
     @BeforeAll
-    protected void setupEnvironment() throws Exception {
+    public void setupEnvironment() throws Exception {
         Startables.deepStart(wrenam1, wrenam2).get();
     }
 
     /**
-     * Setup test realm for the given test case / realm name.
+     * Copy setup data to the specified container.
      */
-    protected void setupRealm(String name) throws Exception {
-        wrenam1.copyFileToContainer(MountableFile.forClasspathResource(
-                "/cases/" + name),
-                "/srv/wrenam/setup/" + name);
+    protected void copySetupData(ContainerState container, String path) {
+        container.copyFileToContainer(MountableFile.forClasspathResource(
+                "/cases/" + path),
+                "/srv/wrenam/setup/" + path);
+    }
 
-        ExecResult result = WrenAMCommands.ssoadm(wrenam1, "do-batch",
-                "--batchfile", "setup/" + name + "/config.batch");
+    /**
+     * Execute batch configuration located on the given path.
+     */
+    protected void execBatchConfig(ContainerState container, String path) throws Exception {
+        ExecResult result = WrenAMCommands.ssoadm(container, "do-batch",
+                "--batchfile", "setup/" + path);
         assertSuccess(result, "Failed to configure AM");
+    }
+
+    /**
+     * Configure Wren:AM for the test case with the given name.
+     */
+    protected void setupTestConfig(String name) throws Exception {
+        copySetupData(wrenam1, name);
+        copySetupData(wrenam2, name);
+        execBatchConfig(wrenam1, name + "/config.batch");
     }
 
     /**

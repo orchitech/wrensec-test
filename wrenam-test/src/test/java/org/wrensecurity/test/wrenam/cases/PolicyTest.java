@@ -44,8 +44,8 @@ public class PolicyTest extends WrenAMTestBase {
     private static final String SUBJECT_USER_DN = "uid=john,ou=people," + USER_STORE_BASE_DN;
 
     @BeforeAll
-    public void setupRealm() throws Exception {
-        setupRealm(TEST_REALM.substring(1));
+    public void setupTestConfig() throws Exception {
+        setupTestConfig("policy");
     }
 
     @Test
@@ -211,7 +211,7 @@ public class PolicyTest extends WrenAMTestBase {
                 .getSsoTokenId();
 
         String userToken = wrenamClient.authenticate(TEST_REALM)
-                .immediateAuth("john", "password")
+                .immediateAuth(TEST_USERNAME, TEST_PASSWORD)
                 .getSsoTokenId();
 
         // Evaluate policies for both resources

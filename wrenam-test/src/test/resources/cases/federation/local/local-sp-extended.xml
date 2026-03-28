@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<EntityConfig entityID="https://wrenam.wrensecurity.local/auth/saml/test-sp" hosted="true" xmlns="urn:sun:fm:SAML:2.0:entityconfig">
+    <SPSSOConfig metaAlias="/federation/local-sp">
+        <Attribute name="wantLogoutResponseSigned">
+            <Value>false</Value>
+        </Attribute>
+        <Attribute name="wantAttributeEncrypted">
+            <Value>false</Value>
+        </Attribute>
+        <Attribute name="spAuthncontextMapper">
+            <Value>com.sun.identity.saml2.plugins.DefaultSPAuthnContextMapper</Value>
+        </Attribute>
+        <Attribute name="alwaysIdpProxy"/>
+        <Attribute name="autofedAttribute">
+            <Value />
+        </Attribute>
+        <Attribute name="spSessionSyncEnabled">
+            <Value>false</Value>
+        </Attribute>
+        <Attribute name="spAuthncontextComparisonType">
+            <Value>ignore</Value>
+        </Attribute>
+        <Attribute name="idpProxyList"/>
+        <Attribute name="spDoNotWriteFederationInfo">
+            <Value>false</Value>
+        </Attribute>
+        <Attribute name="wantPOSTResponseSigned">
+            <Value>true</Value>
+        </Attribute>
+        <Attribute name="localAuthURL">
+            <Value/>
+        </Attribute>
+        <Attribute name="wantMNIRequestSigned">
+            <Value>false</Value>
+        </Attribute>
+        <Attribute name="spAdapterEnv">
+            <Value/>
+        </Attribute>
+        <Attribute name="basicAuthPassword"/>
+        <Attribute name="transientUser">
+            <Value/>
+        </Attribute>
+        <Attribute name="cotlist">
+            <Value>test-federation</Value>
+        </Attribute>
+        <Attribute name="spAttributeMapper">
+            <Value>com.sun.identity.saml2.plugins.DefaultSPAttributeMapper</Value>
+        </Attribute>
+        <Attribute name="saeSPUrl"/>
+        <Attribute name="responseArtifactMessageEncoding">
+            <Value>URI</Value>
+        </Attribute>
+        <Attribute name="useNameIDAsSPUserID">
+            <Value>false</Value>
+        </Attribute>
+        <Attribute name="wantAssertionEncrypted">
+            <Value>false</Value>
+        </Attribute>
+        <Attribute name="saml2AuthModuleName">
+            <Value/>
+        </Attribute>
+        <Attribute name="signingCertAlias">
+            <Value>test-local</Value>
+        </Attribute>
+        <Attribute name="relayStateUrlList"/>
+        <Attribute name="appLogoutUrl">
+            <Value/>
+        </Attribute>
+        <Attribute name="useIntroductionForIDPProxy">
+            <Value>false</Value>
+        </Attribute>
+        <Attribute name="ECPRequestIDPListGetComplete"/>
+        <Attribute name="attributeMap">
+            <Value>urn:oid:2.5.4.4=sn</Value>
+            <Value>urn:oid:2.5.4.42=givenName</Value>
+        </Attribute>
+        <Attribute name="spAuthncontextClassrefMapping">
+            <Value>urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport|0|default</Value>
+        </Attribute>
+        <Attribute name="wantMNIResponseSigned">
+            <Value>false</Value>
+        </Attribute>
+        <Attribute name="wantLogoutRequestSigned">
+            <Value>false</Value>
+        </Attribute>
+        <Attribute name="metaAlias"/>
+        <Attribute name="ECPRequestIDPListFinderImpl">
+            <Value>com.sun.identity.saml2.plugins.ECPIDPFinder</Value>
+        </Attribute>
+        <Attribute name="spAccountMapper">
+            <Value>com.sun.identity.saml2.plugins.DefaultSPAccountMapper</Value>
+        </Attribute>
+        <Attribute name="includeRequestedAuthnContext">
+            <Value>false</Value>
+        </Attribute>
+        <Attribute name="spAdapter">
+            <Value />
+        </Attribute>
+        <Attribute name="ECPRequestIDPList"/>
+        <Attribute name="saeAppSecretList"/>
+        <Attribute name="idpProxyCount">
+            <Value>0</Value>
+        </Attribute>
+        <Attribute name="wantArtifactResponseSigned">
+            <Value>false</Value>
+        </Attribute>
+        <Attribute name="basicAuthOn">
+            <Value>false</Value>
+        </Attribute>
+        <Attribute name="wantNameIDEncrypted">
+            <Value>false</Value>
+        </Attribute>
+        <Attribute name="basicAuthUser"/>
+        <Attribute name="saeSPLogoutUrl"/>
+        <Attribute name="intermediateUrl">
+            <Value/>
+        </Attribute>
+        <Attribute name="useIDPFinder"/>
+        <Attribute name="encryptionCertAlias"/>
+        <Attribute name="defaultRelayState">
+            <Value>http://wrenam.wrensecurity.local:8080/auth/</Value>
+        </Attribute>
+        <Attribute name="assertionTimeSkew">
+            <Value>300</Value>
+        </Attribute>
+        <Attribute name="autofedEnabled">
+            <Value>true</Value>
+        </Attribute>
+        <Attribute name="enableIDPProxy">
+            <Value>false</Value>
+        </Attribute>
+    </SPSSOConfig>
+</EntityConfig>

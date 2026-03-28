@@ -78,21 +78,21 @@ public class WrenAMClient {
     }
 
     /**
-     * Create a new HTTP request for the given relative URI.
+     * Create a new HTTP request for the given absolute or relative URI.
      */
     public HttpRequestBuilder newHttpRequest(String uri) {
         return newHttpRequest(URI.create(uri));
     }
 
     /**
-     * Create a new HTTP request for the given relative URI and the given realm.
+     * Create a new HTTP request for the given absolute or relative URI and the given realm.
      */
     public HttpRequestBuilder newHttpRequest(String uri, String realm) {
         return newHttpRequest(buildRealmUri(uri, realm));
     }
 
     /**
-     * Create a new Wren:AM HTTP request for the given relative URI.
+     * Create a new Wren:AM HTTP request for the given absolute or relative URI.
      */
     public HttpRequestBuilder newHttpRequest(URI uri) {
         return new HttpRequestBuilder(uri);
@@ -190,8 +190,12 @@ public class WrenAMClient {
         private HttpRequest.Builder request;
 
         private HttpRequestBuilder(URI uri) {
+            URI relativeUri = uri.isAbsolute() ? originalBaseUri.relativize(uri) : uri;
+            if (relativeUri.isAbsolute()) {
+                throw new IllegalArgumentException("Unexpected absolute URI: " + uri);
+            }
             this.request = HttpRequest.newBuilder()
-                    .uri(switchedBaseUri.resolve(uri))
+                    .uri(switchedBaseUri.resolve(relativeUri))
                     .header("Host", originalBaseUri.getHost());
         }
 

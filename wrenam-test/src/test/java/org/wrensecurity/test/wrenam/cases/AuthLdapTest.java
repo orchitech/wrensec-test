@@ -42,8 +42,8 @@ public class AuthLdapTest extends WrenAMTestBase {
     private static final String NEW_VALID_PASSWORD = "Password1";
 
     @BeforeAll
-    public void setupRealm() throws Exception {
-        setupRealm(TEST_REALM.substring(1));
+    public void setupTestConfig() throws Exception {
+        setupTestConfig("auth-ldap");
 
         try (var connection = users1.getRootLdapConnection()) {
             connection.unwrap().add(

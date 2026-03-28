@@ -1,4 +1,9 @@
-# Setup for mTLS authentication
+# Test Certificate Authority
+
+Test CA is used for issuing certificates used in various system tests. Every issued certificate
+is being stored in this top-level folder. Test cases might have copy of those certificates in
+their keystores / truststores.
+
 
 ## Certification authority
 

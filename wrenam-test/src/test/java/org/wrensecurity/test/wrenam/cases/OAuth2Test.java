@@ -20,8 +20,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -29,6 +27,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
+import org.wrensecurity.test.base.support.UrlQueryBuilder;
 import org.wrensecurity.test.wrenam.base.WrenAMClient;
 import org.wrensecurity.test.wrenam.base.WrenAMClient.HttpResponseWrapper;
 import org.wrensecurity.test.wrenam.base.WrenAMTestBase;
@@ -39,10 +38,6 @@ public class OAuth2Test extends WrenAMTestBase {
 
     private static final String TEST_REALM = "/oauth2";
 
-    private static final String TEST_USERNAME = "john";
-
-    private static final String TEST_PASSWORD = "password";
-
     private static final String AGENT_ID = "test";
 
     private static final String AGENT_SECRET = "password";
@@ -50,8 +45,8 @@ public class OAuth2Test extends WrenAMTestBase {
     private static final String REDIRECT_URI = "http://test.example.org";
 
     @BeforeAll
-    public void setupRealm() throws Exception {
-        super.setupRealm(TEST_REALM.substring(1));
+    public void setupTestCase() throws Exception {
+        setupTestConfig("oauth2");
     }
 
     @Test
@@ -64,12 +59,14 @@ public class OAuth2Test extends WrenAMTestBase {
                 .useAsSession();
 
         // Step 2: request authorization code
-        String authorizeQuery = "response_type=code"
-                + "&client_id=" + AGENT_ID
-                + "&redirect_uri=" + URLEncoder.encode(REDIRECT_URI, StandardCharsets.UTF_8)
-                + "&scope=openid%20profile"
-                + "&state=foobar"
-                + "&realm=" + URLEncoder.encode(TEST_REALM, StandardCharsets.UTF_8);
+        String authorizeQuery = new UrlQueryBuilder()
+                .param("response_type", "code")
+                .param("client_id", AGENT_ID)
+                .param("redirect_uri", REDIRECT_URI)
+                .param("scope", "openid profile")
+                .param("state", "foobar")
+                .param("realm", TEST_REALM)
+                .build();
         HttpResponseWrapper authorizeResponse = userClient
                 .newHttpRequest("oauth2/authorize?" + authorizeQuery)
                 .buildAndSend()
@@ -85,9 +82,11 @@ public class OAuth2Test extends WrenAMTestBase {
         WrenAMClient agentClient = getWrenAMClient();
 
         // Step 3: exchange authorization code for tokens
-        String exchangeBody = "grant_type=authorization_code"
-                + "&code=" + authorizationCode
-                + "&redirect_uri=" + URLEncoder.encode(REDIRECT_URI, StandardCharsets.UTF_8);
+        String exchangeBody = new UrlQueryBuilder()
+                .param("grant_type", "authorization_code")
+                .param("code", authorizationCode)
+                .param("redirect_uri", REDIRECT_URI)
+                .build();
         JsonNode exchangeResult = agentClient
                 .newHttpRequest("oauth2/access_token", TEST_REALM)
                 .header("Accept", "application/json")
