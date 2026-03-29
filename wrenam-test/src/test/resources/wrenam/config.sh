@@ -16,7 +16,7 @@
 #
 
 # Wren:AM server instance base URL (SERVER_URL configuration parameter)
-WRENAM_SERVER_URL=${WRENAM_SERVER_URL:-http://wrenam.wrensecurity.local:8080}
+WRENAM_SERVER_URL=${WRENAM_SERVER_URL:-http://wrenam.wrensecurity.test:8080}
 
 # Wren:AM servlet context path (DEPLOYMENT_URI configuration parameter)
 WRENAM_DEPLOYMENT_URI=${WRENAM_DEPLOYMENT_URI:-/auth}

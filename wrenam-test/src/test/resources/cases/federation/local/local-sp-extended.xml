@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<EntityConfig entityID="https://wrenam.wrensecurity.local/auth/saml/test-sp" hosted="true" xmlns="urn:sun:fm:SAML:2.0:entityconfig">
+<EntityConfig entityID="https://wrenam.wrensecurity.test/auth/saml/test-sp" hosted="true" xmlns="urn:sun:fm:SAML:2.0:entityconfig">
     <SPSSOConfig metaAlias="/federation/local-sp">
         <Attribute name="wantLogoutResponseSigned">
             <Value>false</Value>
@@ -12,7 +12,7 @@
         </Attribute>
         <Attribute name="alwaysIdpProxy"/>
         <Attribute name="autofedAttribute">
-            <Value />
+            <Value>uid</Value>
         </Attribute>
         <Attribute name="spSessionSyncEnabled">
             <Value>false</Value>
@@ -118,7 +118,7 @@
         <Attribute name="useIDPFinder"/>
         <Attribute name="encryptionCertAlias"/>
         <Attribute name="defaultRelayState">
-            <Value>http://wrenam.wrensecurity.local:8080/auth/</Value>
+            <Value>http://wrenam.wrensecurity.test:8080/auth/?realm=%2Ffederation</Value>
         </Attribute>
         <Attribute name="assertionTimeSkew">
             <Value>300</Value>

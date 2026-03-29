@@ -41,7 +41,7 @@ public class AuditTest extends WrenAMTestBase {
     private static final String AUTH_LOG_PATH = "/srv/wrenam/auth/log/authentication.csv";
 
     @BeforeAll
-    public void setupAuditService() throws Exception {
+    public static void setupTestCase() throws Exception {
         ExecResult result = WrenAMCommands.ssoadm(
                 wrenam1,
                 "set-sub-cfg",
@@ -56,13 +56,13 @@ public class AuditTest extends WrenAMTestBase {
     public void testSuccessfulAuthAudit() throws Exception {
         WrenAMClient wrenamClient = wrenam1.getWrenAMClient();
 
-        long linesBefore = readFileLineCount(AUTH_LOG_PATH);
+        long lineCount = readFileLineCount(AUTH_LOG_PATH);
 
         AuthenticationHandler authHandler = wrenamClient.authenticate()
                 .immediateAuth(WrenAMDefaults.ADMIN_USERNAME, WrenAMDefaults.ADMIN_PASSWORD);
         assertTrue(authHandler.isSucceeded());
 
-        List<String> increment = readFileLineIncrement(AUTH_LOG_PATH, linesBefore);
+        List<String> increment = readFileLineIncrement(AUTH_LOG_PATH, lineCount);
         assertEquals(2, increment.size(), "Increment of two log events (module and chain) expected");
         assertTrue(increment.get(0).matches(".*\"AM-LOGIN-MODULE-COMPLETED\".*\"SUCCESSFUL\".*"));
         assertTrue(increment.get(1).matches(".*\"AM-LOGIN-COMPLETED\".*\"SUCCESSFUL\".*"));
@@ -72,13 +72,13 @@ public class AuditTest extends WrenAMTestBase {
     public void testFailedAuthAudit() throws Exception {
         WrenAMClient wrenamClient = wrenam1.getWrenAMClient();
 
-        long linesBefore = readFileLineCount(AUTH_LOG_PATH);
+        long lineCount = readFileLineCount(AUTH_LOG_PATH);
 
         AuthenticationHandler authHandler = wrenamClient.authenticate()
                 .immediateAuth(WrenAMDefaults.ADMIN_USERNAME, "wrong_password");
         assertTrue(authHandler.isFailed());
 
-        List<String> increment = readFileLineIncrement(AUTH_LOG_PATH, linesBefore);
+        List<String> increment = readFileLineIncrement(AUTH_LOG_PATH, lineCount);
         assertEquals(2, increment.size(), "Increment of two log events (module and chain) expected");
         assertTrue(increment.get(0).matches(".*\"AM-LOGIN-MODULE-COMPLETED\".*\"FAILED\".*"));
         assertTrue(increment.get(1).matches(".*\"AM-LOGIN-COMPLETED\".*\"FAILED\".*"));

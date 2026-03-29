@@ -16,14 +16,16 @@
 
 package org.wrensecurity.test.wrenam.base;
 
+import static org.wrensecurity.test.base.support.CustomAssertions.assertSuccess;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.testcontainers.containers.Container.ExecResult;
 import org.testcontainers.containers.ContainerState;
+import org.testcontainers.containers.ExecConfig;
 import org.testcontainers.images.builder.Transferable;
-import org.wrensecurity.test.base.support.ContainerCommands;
 
 /**
  * Static helper for common Wren:AM CLI commands executed inside containers.
@@ -43,7 +45,11 @@ public final class WrenAMCommands {
         container.copyFileToContainer(
                 Transferable.of(WrenAMDefaults.ADMIN_PASSWORD, 0400),
                 SSOADM_PASSWORD_PATH);
-        ContainerCommands.execAsRoot(container, "chown", "1000:1000", SSOADM_PASSWORD_PATH);
+        ExecResult chownResult = container.execInContainer(ExecConfig.builder()
+                .user("0")
+                .command(new String[] { "chown", "1000:1000", SSOADM_PASSWORD_PATH })
+                .build());
+        assertSuccess(chownResult, "Unable to change password file ownership");
 
         List<String> args = new ArrayList<>(List.of(
                 "ssoadm",

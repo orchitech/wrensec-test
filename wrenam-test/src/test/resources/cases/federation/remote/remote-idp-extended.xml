@@ -18,6 +18,7 @@
             <Value>com.sun.identity.saml2.plugins.DefaultIDPAccountMapper</Value>
         </Attribute>
         <Attribute name="attributeMap">
+            <Value>uid=uid</Value>
             <Value>urn:oid:2.5.4.4=sn</Value>
             <Value>urn:oid:2.5.4.42=givenName</Value>
         </Attribute>

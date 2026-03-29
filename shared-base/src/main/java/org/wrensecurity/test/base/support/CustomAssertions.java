@@ -23,7 +23,7 @@ import org.testcontainers.containers.Container.ExecResult;
 /**
  * Custom assertion methods.
  */
-public class CustomAssertions {
+public final class CustomAssertions {
 
     private CustomAssertions() {
     }

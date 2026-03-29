@@ -42,7 +42,7 @@ public class AuthLdapTest extends WrenAMTestBase {
     private static final String NEW_VALID_PASSWORD = "Password1";
 
     @BeforeAll
-    public void setupTestConfig() throws Exception {
+    public void setupTestCase() throws Exception {
         setupTestConfig("auth-ldap");
 
         try (var connection = users1.getRootLdapConnection()) {

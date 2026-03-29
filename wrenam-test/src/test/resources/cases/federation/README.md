@@ -1,4 +1,4 @@
-# Test Federation
+.test# Test Federation
 
 Setup for test federation is fairly simple. The test subject is a *local* Wren:AM deployment
 shared by all tests that use hostname *wrenam.wrensecurity.test*. For the *remote* part there

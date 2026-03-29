@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<EntityConfig entityID="https://wrenam.wrensecurity.local/auth/saml/test-sp" hosted="false" xmlns="urn:sun:fm:SAML:2.0:entityconfig">
+<EntityConfig entityID="https://wrenam.wrensecurity.test/auth/saml/test-sp" hosted="false" xmlns="urn:sun:fm:SAML:2.0:entityconfig">
     <SPSSOConfig metaAlias="/federation/local-sp">
         <Attribute name="wantPOSTResponseSigned">
             <Value>true</Value>

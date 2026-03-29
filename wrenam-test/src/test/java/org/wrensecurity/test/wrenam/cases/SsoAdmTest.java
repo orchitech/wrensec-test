@@ -38,7 +38,7 @@ public class SsoAdmTest extends WrenAMTestBase {
                 "list-servers");
         assertSuccess(result, "Unable to exec list-servers command");
 
-        Pattern pattern = Pattern.compile("http://wrenam[12].wrensecurity.local:8080/auth");
+        Pattern pattern = Pattern.compile("http://wrenam[12].wrensecurity.test:8080/auth");
         Matcher matcher = pattern.matcher(result.getStdout());
         assertEquals(2, matcher.results().count(), "Exactly 2 AM servers expected");
     }

@@ -44,7 +44,7 @@ public class PolicyTest extends WrenAMTestBase {
     private static final String SUBJECT_USER_DN = "uid=john,ou=people," + USER_STORE_BASE_DN;
 
     @BeforeAll
-    public void setupTestConfig() throws Exception {
+    public void setupTestCase() throws Exception {
         setupTestConfig("policy");
     }
 
