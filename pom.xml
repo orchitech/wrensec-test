@@ -28,6 +28,7 @@
         <module>wrenam-test</module>
         <module>wrends-test</module>
         <module>wrenidm-test</module>
+        <module>wrenig-test</module>
     </modules>
 
     <scm>

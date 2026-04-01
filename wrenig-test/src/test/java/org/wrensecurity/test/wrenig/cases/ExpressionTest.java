@@ -13,7 +13,8 @@
  *
  * Copyright 2025 Wren Security.
  */
-package org.wrensecurity.wrenig.test.cases;
+
+package org.wrensecurity.test.wrenig.cases;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -27,16 +28,16 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
 import org.testcontainers.containers.ComposeContainer;
-import org.wrensecurity.wrenig.test.base.BaseWrenigTest;
-import org.wrensecurity.wrenig.test.base.TomcatStartupWaitStrategy;
+import org.wrensecurity.test.wrenig.base.BaseWrenigTest;
+import org.wrensecurity.test.wrenig.base.TomcatStartupWaitStrategy;
 
 @TestInstance(Lifecycle.PER_CLASS)
-public class ScriptingTest extends BaseWrenigTest {
+public class ExpressionTest extends BaseWrenigTest {
 
     @SuppressWarnings("resource")
     @BeforeAll
     public void init() {
-        environment = new ComposeContainer(new File("src/test/resources/cases/scripting/compose.yaml")).withLocalCompose(true);
+        environment = new ComposeContainer(new File("src/test/resources/cases/expression/compose.yaml"));
         environment.waitingFor(WRENIG_CONTAINER_NAME, new TomcatStartupWaitStrategy());
         environment.start();
     }
@@ -49,19 +50,11 @@ public class ScriptingTest extends BaseWrenigTest {
     }
 
     @Test
-    public void testInlineGroovy() throws Exception {
-        HttpRequest request = HttpRequest.newBuilder().uri(URI.create("http://wrenig.wrensecurity.local:8080/inline")).build();
+    public void testEnvVariableExpression() throws Exception {
+        HttpRequest request = HttpRequest.newBuilder().uri(URI.create("http://wrenig.wrensecurity.local:8080/env-var")).build();
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
         assertEquals(200, response.statusCode());
-        assertEquals("Hello from inline Groovy", response.body());
-    }
-
-    @Test
-    public void testGroovyFile() throws Exception {
-        HttpRequest request = HttpRequest.newBuilder().uri(URI.create("http://wrenig.wrensecurity.local:8080/file")).build();
-        HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-        assertEquals(200, response.statusCode());
-        assertEquals("Hello from Groovy file", response.body());
+        assertEquals("Hello world", response.body());
     }
 
 }

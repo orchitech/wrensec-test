@@ -13,18 +13,24 @@
  *
  * Copyright 2025 Wren Security.
  */
-package org.wrensecurity.wrenig.test.base;
 
-import java.net.http.HttpClient;
-import org.testcontainers.containers.ComposeContainer;
+package org.wrensecurity.test.wrenig.base;
 
-public abstract class BaseWrenigTest {
+import java.time.Duration;
+import org.testcontainers.containers.wait.strategy.LogMessageWaitStrategy;
 
-    // Default Wren:IG Docker container name
-    protected static final String WRENIG_CONTAINER_NAME = "wrenig";
+/**
+ * Wait strategy checking whether that Apache Tomcat started.
+ */
+public class TomcatStartupWaitStrategy extends LogMessageWaitStrategy {
 
-    protected final HttpClient httpClient = HttpClient.newHttpClient();
-
-    protected ComposeContainer environment;
+    /**
+     * Create new wait strategy instance.
+     */
+    public TomcatStartupWaitStrategy() {
+        withRegEx(".*Server startup in \\[.*\\] milliseconds\\n");
+        withTimes(1);
+        withStartupTimeout(Duration.ofSeconds(300));
+    }
 
 }

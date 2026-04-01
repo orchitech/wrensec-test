@@ -13,13 +13,12 @@
  *
  * Copyright 2025 Wren Security.
  */
-package org.wrensecurity.wrenig.test.cases;
+
+package org.wrensecurity.test.wrenig.cases;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.microsoft.playwright.Browser;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Playwright;
@@ -32,8 +31,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
 import org.testcontainers.containers.ComposeContainer;
-import org.wrensecurity.wrenig.test.base.BaseWrenigTest;
-import org.wrensecurity.wrenig.test.base.TomcatStartupWaitStrategy;
+import org.wrensecurity.test.wrenig.base.BaseWrenigTest;
+import org.wrensecurity.test.wrenig.base.TomcatStartupWaitStrategy;
+import tools.jackson.core.type.TypeReference;
+import tools.jackson.databind.ObjectMapper;
 
 @TestInstance(Lifecycle.PER_CLASS)
 public class AuthSaml2Test extends BaseWrenigTest {
@@ -49,7 +50,7 @@ public class AuthSaml2Test extends BaseWrenigTest {
     @SuppressWarnings("resource")
     @BeforeAll
     public void init() throws Exception {
-        environment = new ComposeContainer(new File("src/test/resources/cases/auth-saml/compose.yaml")).withLocalCompose(true);
+        environment = new ComposeContainer(new File("src/test/resources/cases/auth-saml/compose.yaml"));
         environment.waitingFor(WRENIG_CONTAINER_NAME, new TomcatStartupWaitStrategy());
         environment.waitingFor("wrenam", new TomcatStartupWaitStrategy());
         environment.start();
