@@ -1,0 +1,11 @@
+{
+    "name": "02-file",
+    "condition": "${matches(request.uri.path, '^/file$')}",
+    "handler": {
+        "type": "ScriptableHandler",
+        "config": {
+            "type": "application/x-groovy",
+            "file": "org/wrensecurity/wrenig/handler/GroovyTestHandler.groovy"
+        }
+    }
+}

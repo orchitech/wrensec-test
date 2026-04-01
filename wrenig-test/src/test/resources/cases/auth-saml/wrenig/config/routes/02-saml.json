@@ -1,0 +1,13 @@
+{
+    "name": "02-saml",
+    "condition": "${matches(request.uri.path, '^/saml')}",
+    "handler": {
+        "type": "SamlFederationHandler",
+        "config": {
+            "assertionMapping": {
+                "username": "uid"
+            },
+            "redirectURI": "/auth"
+        }
+    }
+}

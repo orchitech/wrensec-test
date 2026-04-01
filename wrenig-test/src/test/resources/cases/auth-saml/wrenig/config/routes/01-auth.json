@@ -1,0 +1,36 @@
+{
+    "name": "01-auth",
+    "condition": "${matches(request.uri.path, '^/auth')}",
+    "handler": {
+        "type": "DispatchHandler",
+        "config": {
+            "bindings": [
+                {
+                    "condition": "${empty session.username}",
+                    "handler": {
+                        "type": "StaticResponseHandler",
+                        "config": {
+                            "status": 302,
+                            "reason": "Found",
+                            "headers": {
+                                "Location": [
+                                    "http://wrenig.wrensecurity.local:8080/saml/SPInitiatedSSO?metaAlias=/sp&idpEntityID=samltest-idp"
+                                ]
+                            }
+                        }
+                    }
+                },
+                {
+                    "handler": {
+                        "name": "ResponseHandler",
+                        "type": "ScriptableHandler",
+                        "config": {
+                            "type": "application/x-groovy",
+                            "file": "org/wrensecurity/wrenig/handler/SessionResponseHandler.groovy"
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}
