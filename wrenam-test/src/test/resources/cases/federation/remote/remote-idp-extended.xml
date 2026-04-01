@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<EntityConfig entityID="https://wrenam.wrensecurity.remote/auth/saml/test-idp" hosted="true" xmlns="urn:sun:fm:SAML:2.0:entityconfig">
+    <IDPSSOConfig metaAlias="/federation/remote-idp">
+        <Attribute name="assertionEffectiveTime">
+            <Value>600</Value>
+        </Attribute>
+        <Attribute name="appLogoutUrl">
+            <Value/>
+        </Attribute>
+        <Attribute name="wantLogoutResponseSigned">
+            <Value>false</Value>
+        </Attribute>
+        <Attribute name="idpECPSessionMapper">
+            <Value>com.sun.identity.saml2.plugins.DefaultIDPECPSessionMapper</Value>
+        </Attribute>
+        <Attribute name="RpUrl"/>
+        <Attribute name="idpAccountMapper">
+            <Value>com.sun.identity.saml2.plugins.DefaultIDPAccountMapper</Value>
+        </Attribute>
+        <Attribute name="attributeMap">
+            <Value>uid=uid</Value>
+            <Value>urn:oid:2.5.4.4=sn</Value>
+            <Value>urn:oid:2.5.4.42=givenName</Value>
+        </Attribute>
+        <Attribute name="discoveryBootstrappingEnabled">
+            <Value>false</Value>
+        </Attribute>
+        <Attribute name="nameIDFormatMap"/>
+        <Attribute name="proxyIDPFinderJSP"/>
+        <Attribute name="autofedAttribute">
+            <Value/>
+        </Attribute>
+        <Attribute name="wantMNIResponseSigned">
+            <Value>false</Value>
+        </Attribute>
+        <Attribute name="idpAuthncontextClassrefMapping"/>
+        <Attribute name="wantLogoutRequestSigned">
+            <Value>false</Value>
+        </Attribute>
+        <Attribute name="metaAlias"/>
+        <Attribute name="proxyIDPFinderClass"/>
+        <Attribute name="saeAppSecretList"/>
+        <Attribute name="idpAdapter"/>
+        <Attribute name="signingCertKeyPass"/>
+        <Attribute name="idpAuthncontextMapper">
+            <Value>com.sun.identity.saml2.plugins.DefaultIDPAuthnContextMapper</Value>
+        </Attribute>
+        <Attribute name="basicAuthOn">
+            <Value>false</Value>
+        </Attribute>
+        <Attribute name="wantNameIDEncrypted">
+            <Value>false</Value>
+        </Attribute>
+        <Attribute name="idpSessionSyncEnabled">
+            <Value>false</Value>
+        </Attribute>
+        <Attribute name="wantMNIRequestSigned">
+            <Value>false</Value>
+        </Attribute>
+        <Attribute name="basicAuthUser"/>
+        <Attribute name="idpDisableNameIDPersistence">
+            <Value>false</Value>
+        </Attribute>
+        <Attribute name="basicAuthPassword"/>
+        <Attribute name="wantArtifactResolveSigned">
+            <Value>false</Value>
+        </Attribute>
+        <Attribute name="AuthUrl">
+            <Value/>
+        </Attribute>
+        <Attribute name="saeIDPUrl"/>
+        <Attribute name="assertionCacheEnabled">
+            <Value>false</Value>
+        </Attribute>
+        <Attribute name="cotlist">
+            <Value>test-federation</Value>
+        </Attribute>
+        <Attribute name="assertionNotBeforeTimeSkew">
+            <Value>600</Value>
+        </Attribute>
+        <Attribute name="idpAttributeMapper">
+            <Value>com.sun.identity.saml2.plugins.DefaultIDPAttributeMapper</Value>
+        </Attribute>
+        <Attribute name="enableProxyIDPFinderForAllSPs">
+            <Value>false</Value>
+        </Attribute>
+        <Attribute name="relayStateUrlList"/>
+        <Attribute name="autofedEnabled">
+            <Value>false</Value>
+        </Attribute>
+        <Attribute name="signingCertAlias">
+            <Value>test-remote</Value>
+        </Attribute>
+        <Attribute name="encryptionCertAlias" />
+    </IDPSSOConfig>
+</EntityConfig>

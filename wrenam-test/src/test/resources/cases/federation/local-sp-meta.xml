@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<EntityDescriptor entityID="https://wrenam.wrensecurity.test/auth/saml/test-sp" xmlns="urn:oasis:names:tc:SAML:2.0:metadata">
+    <SPSSODescriptor AuthnRequestsSigned="true" WantAssertionsSigned="true" protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+        <KeyDescriptor use="signing">
+            <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+                <ds:X509Data>
+                    <ds:X509Certificate>
+MIIE/zCCAuegAwIBAgIIDt1je+YARZgwDQYJKoZIhvcNAQEMBQAwLTEWMBQGA1UEChMNd3JlbiBz
+ZWN1cml0eTETMBEGA1UEAxMKdGVzdC1sb2NhbDAgFw0yNjAzMjgxNjEwMDFaGA8yMTI2MDMwNDE2
+MTAwMVowLTEWMBQGA1UEChMNd3JlbiBzZWN1cml0eTETMBEGA1UEAxMKdGVzdC1sb2NhbDCCAiIw
+DQYJKoZIhvcNAQEBBQADggIPADCCAgoCggIBAOg+tI0wJoaIG19HBfZGRzthdDkWOqNeXOzCUi8q
+QzW/B+kOw/Z+vEH4/Zwp/WSDKfOdlf+GwvzK5FeRCZGAJCuDkm6P0XErkDK5c2AseVN8x+KJj0mS
+JTB+kPmbUX14GKmdzs2tOrzU7eFsg8aArxeI4QfLHSa89xc1LdngOUqdjYxAeW0WuZa78fBZaNVp
+h0iAHzylp2zY9/aVR0Fpvp/AT+lZXFfCiwwUgRUZ+aS8syCJYBNEbL3Q1jlyUJcF5AwM5cGOWqMY
+RN6l1rE8y5JKhAML7Ys/vVk9yk8XK8g0J+W9w5aHHEBMYqo2RezqcHV6dqGr1Jz1v46vGnjmUem5
+Ek1jRFb58wdXl2EDPtRjxmwgqyxO7WdM/wxGcVCTmcXThWu6LcUXSlx2erDggDil75xUodeggPSl
+rxYBB/XUvYozxSuySrbFAxfWLBf5IVzIZxBiZUCc+q/UWUZns41h/9cnnvVbes/hVjHk3Jdc98Qz
+zmwcJf7U6KM7IUb+LCxcUSd2IO9fYu5+BmKr2CmlHVpBXHymmd9tuzPbP6iOt2E0ZjFfBXb32jYp
+o52UC9KnLHEDPParqEBCgyksgphdssXohq7na83KmAuJ1nI/HR8GfC6ToQiTl+zlFsreC7G6/DFJ
+fXdu8+wGY+h95c/aXIctRFVbK8ihpfsKtgTFAgMBAAGjITAfMB0GA1UdDgQWBBTH4hgJ+mBgL9Qx
+Vwcu/Ib81aZpQDANBgkqhkiG9w0BAQwFAAOCAgEAGpmwHkgSzBi+O4/xzbiiOnVTtmdTFOLmRJ1S
+oeMgI08hSXziPubfZ7AqIf8X0a+S7Pe6q9FOA7oekuJyiu164xFceno6rNG1xb5ESLCFLi2x/G3p
+fdYqIgh/oH+WS4ha1PVOcYKN+Ga3x13UGe/s6WRnLhYyJCrO3xnswKUbJvJ5/zy1ufAGvEWD8Adp
+lMLasns44LaN9jXOo4px+x004P/L6WesNk1O4lfj0BR7AkPBpgrRjiDMWU9jPaspgrtzeMAwv4mL
+N5oaKvTjHV3Eo9s5LZyNCICdD8TS0L9ZRAbb0GU3r+odkru0COOzA8/zlMAKMh2Wvkntspq7Rtd2
+SW1vczt7gWLdRxalzTOLv4fquwNAQjXhNRHEpM/xXjAOkIRxeGkMKWnLH2rbRw2Q1Qgfuhe0CIFq
+DksuVDj73fuCklPAxUeLA0+rJvQbxoi2/j+a3NZKk836chk0iurqPAm+dUzM68EkbFz8riUAcr4I
+X6LkjAGjoVW5yPxrRz7aGyydloDg5mOTIuzx8dsthFk4P/4H+cRQxrU4cspU7rlT+poCNUKSZyGn
+D5FwmPUb9mbLLdx9/uCDXR/eyRqTDgLxf8kkESb/wayEfpPFPyhHQialAlk7X7FXO0fFAX76b4wb
+sRP+Jnu4TCl1F8nmOLd2F1R4Qi9IE8CC+pjfb9M=
+                    </ds:X509Certificate>
+                </ds:X509Data>
+            </ds:KeyInfo>
+        </KeyDescriptor>
+        <SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="http://wrenam.wrensecurity.test:8080/auth/SPSloRedirect/metaAlias/federation/local-sp" ResponseLocation="http://wrenam.wrensecurity.test:8080/auth/SPSloRedirect/metaAlias/federation/local-sp"/>
+        <SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="http://wrenam.wrensecurity.test:8080/auth/SPSloPOST/metaAlias/federation/local-sp" ResponseLocation="http://wrenam.wrensecurity.test:8080/auth/SPSloPOST/metaAlias/federation/local-sp"/>
+        <SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="http://wrenam.wrensecurity.test:8080/auth/SPSloSoap/metaAlias/federation/local-sp"/>
+        <ManageNameIDService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="http://wrenam.wrensecurity.test:8080/auth/SPMniRedirect/metaAlias/federation/local-sp" ResponseLocation="http://wrenam.wrensecurity.test:8080/sso/SPMniRedirect/metaAlias/federation/local-sp"/>
+        <ManageNameIDService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="http://wrenam.wrensecurity.test:8080/auth/SPMniPOST/metaAlias/federation/local-sp" ResponseLocation="http://wrenam.wrensecurity.test:8080/auth/SPMniPOST/metaAlias/federation/local-sp"/>
+        <ManageNameIDService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="http://wrenam.wrensecurity.test:8080/auth/SPMniSoap/metaAlias/federation/local-sp" ResponseLocation="http://wrenam.wrensecurity.test:8080/auth/SPMniSoap/metaAlias/federation/local-sp"/>
+        <NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</NameIDFormat>
+        <AssertionConsumerService index="0" isDefault="false" Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact" Location="http://wrenam.wrensecurity.test:8080/auth/Consumer/metaAlias/federation/local-sp"/>
+        <AssertionConsumerService index="1" isDefault="true" Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="http://wrenam.wrensecurity.test:8080/auth/Consumer/metaAlias/federation/local-sp"/>
+        <AssertionConsumerService index="2" isDefault="false" Binding="urn:oasis:names:tc:SAML:2.0:bindings:PAOS" Location="http://wrenam.wrensecurity.test:8080/auth/Consumer/ECP/metaAlias/federation/local-sp"/>
+    </SPSSODescriptor>
+</EntityDescriptor>

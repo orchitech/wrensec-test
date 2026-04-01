@@ -1,0 +1,33 @@
+#
+# The contents of this file are subject to the terms of the Common Development and
+# Distribution License (the License). You may not use this file except in compliance with the
+# License.
+#
+# You can obtain a copy of the License at legal/CDDLv1.1.txt. See the License for the
+# specific language governing permission and limitations under the License.
+#
+# When distributing Covered Software, include this CDDL Header Notice in each file and include
+# the License file at legal/CDDLv1.1.txt. If applicable, add the following below the CDDL
+# Header, with the fields enclosed by brackets [] replaced by your own identifying
+# information: "Portions copyright [year] [name of copyright owner]".
+#
+# Copyright 2026 Wren Security
+#
+
+# Create test realm
+create-realm --realm federation
+
+# Create circle of trust
+create-cot --realm /federation --cot test-federation
+
+# Import hosted IdP entity (Wren:AM acting as SAML IdP)
+import-entity --realm /federation --meta-data-file setup/federation/local-idp-meta.xml --extended-data-file setup/federation/local/local-idp-extended.xml
+
+# Import hosted SP entity (Wren:AM acting as SAML SP)
+import-entity --realm /federation --meta-data-file setup/federation/local-sp-meta.xml --extended-data-file setup/federation/local/local-sp-extended.xml
+
+# Import external IdP entity
+import-entity --realm /federation --meta-data-file setup/federation/remote-idp-meta.xml --extended-data-file setup/federation/local/remote-idp-extended.xml
+
+# Import external SP entity
+import-entity --realm /federation --meta-data-file setup/federation/remote-sp-meta.xml --extended-data-file setup/federation/local/remote-sp-extended.xml

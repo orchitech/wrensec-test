@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<EntityConfig entityID="https://wrenam.wrensecurity.test/auth/saml/test-idp" hosted="false" xmlns="urn:sun:fm:SAML:2.0:entityconfig">
+    <IDPSSOConfig metaAlias="/federation/local-idp">
+        <Attribute name="cotlist">
+            <Value>test-federation</Value>
+        </Attribute>
+    </IDPSSOConfig>
+</EntityConfig>

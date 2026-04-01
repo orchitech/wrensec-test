@@ -79,8 +79,9 @@ public class WrenDSContainer extends GenericContainer<WrenDSContainer> {
      */
     public WrenDSContainer withInitResources(String... resources) {
         for (String resource : resources) {
+            int mode = resource.endsWith(".sh") ? 0775 : 0664;
             withCopyFileToContainer(
-                    MountableFile.forClasspathResource(resource),
+                    MountableFile.forClasspathResource(resource, mode),
                     "/opt/wrends/bootstrap/init/" + Path.of(resource).getFileName());
         }
         return this;
@@ -124,6 +125,13 @@ public class WrenDSContainer extends GenericContainer<WrenDSContainer> {
         Connection connection = getLdapConnectionFactory().getConnection();
         connection.bind(name, password.toCharArray());
         return new WrenDSConnection(connection);
+    }
+
+    /**
+     * Get fully established root user LDAP connection.
+     */
+    public WrenDSConnection getRootLdapConnection() throws LdapException {
+        return getLdapConnection(WrenDSDefaults.ROOT_USER_DN, WrenDSDefaults.ROOT_USER_PASSWORD);
     }
 
     @Override

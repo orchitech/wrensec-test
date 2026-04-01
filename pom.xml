@@ -25,6 +25,7 @@
 
     <modules>
         <module>shared-base</module>
+        <module>wrenam-test</module>
         <module>wrends-test</module>
         <module>wrenidm-test</module>
     </modules>

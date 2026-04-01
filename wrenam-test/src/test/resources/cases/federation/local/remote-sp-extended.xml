@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<EntityConfig entityID="https://wrenam.wrensecurity.remote/auth/saml/test-sp" hosted="false" xmlns="urn:sun:fm:SAML:2.0:entityconfig">
+    <SPSSOConfig metaAlias="/federation/remote-sp">
+        <Attribute name="wantPOSTResponseSigned">
+            <Value>true</Value>
+        </Attribute>
+        <Attribute name="cotlist">
+            <Value>test-federation</Value>
+        </Attribute>
+    </SPSSOConfig>
+</EntityConfig>

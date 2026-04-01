@@ -14,18 +14,13 @@
  * Copyright 2026 Wren Security
  */
 
-package org.wrensecurity.test.wrends.base;
-
-import static org.junit.jupiter.api.Assertions.fail;
-import static org.wrensecurity.test.base.wrends.WrenDSDefaults.ROOT_USER_DN;
-import static org.wrensecurity.test.base.wrends.WrenDSDefaults.ROOT_USER_PASSWORD;
+package org.wrensecurity.test.base.wrends;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.testcontainers.containers.Container.ExecResult;
-import org.wrensecurity.test.base.wrends.WrenDSContainer;
 
 /**
  * Static helper for common Wren:DS CLI commands executed inside containers.
@@ -45,8 +40,8 @@ public final class WrenDSCommands {
                 "--hostname", "localhost",
                 "--port", "4444",
                 "--trustAll",
-                "--bindDN", ROOT_USER_DN,
-                "--bindPassword", ROOT_USER_PASSWORD,
+                "--bindDN", WrenDSDefaults.ROOT_USER_DN,
+                "--bindPassword", WrenDSDefaults.ROOT_USER_PASSWORD,
                 "--no-prompt"));
         args.addAll(Arrays.asList(subcommandArgs));
         return container.execInContainer(args.toArray(String[]::new));
@@ -60,8 +55,8 @@ public final class WrenDSCommands {
         List<String> args = new ArrayList<>(List.of(
                 "ldapsearch",
                 "--port", "1389",
-                "--bindDN", ROOT_USER_DN,
-                "--bindPassword", ROOT_USER_PASSWORD,
+                "--bindDN", WrenDSDefaults.ROOT_USER_DN,
+                "--bindPassword", WrenDSDefaults.ROOT_USER_PASSWORD,
                 "--baseDN", baseDN,
                 filter));
         args.addAll(Arrays.asList(attrs));
@@ -76,8 +71,8 @@ public final class WrenDSCommands {
         return container.execInContainer(
                 "ldapdelete",
                 "--port", "1389",
-                "--bindDN", ROOT_USER_DN,
-                "--bindPassword", ROOT_USER_PASSWORD,
+                "--bindDN", WrenDSDefaults.ROOT_USER_DN,
+                "--bindPassword", WrenDSDefaults.ROOT_USER_PASSWORD,
                 dn);
     }
 
@@ -89,18 +84,9 @@ public final class WrenDSCommands {
         return container.execInContainer(
                 "ldapmodify",
                 "--port", "1389",
-                "--bindDN", ROOT_USER_DN,
-                "--bindPassword", ROOT_USER_PASSWORD,
+                "--bindDN", WrenDSDefaults.ROOT_USER_DN,
+                "--bindPassword", WrenDSDefaults.ROOT_USER_PASSWORD,
                 "--filename", filePath);
-    }
-
-    /**
-     * Assert that the exec result has exit code 0, or fail with a message.
-     */
-    public static void assertSuccess(ExecResult result, String message) {
-        if (result.getExitCode() != 0) {
-            fail(message + " (exit code " + result.getExitCode() + "): " + result.getStderr());
-        }
     }
 
 }

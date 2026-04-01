@@ -19,11 +19,10 @@ package org.wrensecurity.test.wrends.cases;
 import static org.awaitility.Awaitility.await;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.wrensecurity.test.base.support.CustomAssertions.assertSuccess;
 import static org.wrensecurity.test.base.wrends.WrenDSDefaults.BASE_DN;
 import static org.wrensecurity.test.base.wrends.WrenDSDefaults.ROOT_USER_DN;
 import static org.wrensecurity.test.base.wrends.WrenDSDefaults.ROOT_USER_PASSWORD;
-import static org.wrensecurity.test.wrends.base.WrenDSCommands.assertSuccess;
-import static org.wrensecurity.test.wrends.base.WrenDSCommands.ldapDelete;
 
 import com.github.dockerjava.api.command.ExecCreateCmdResponse;
 import java.io.PipedInputStream;
@@ -36,6 +35,7 @@ import org.testcontainers.DockerClientFactory;
 import org.testcontainers.containers.Container.ExecResult;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
+import org.wrensecurity.test.base.wrends.WrenDSCommands;
 import org.wrensecurity.test.base.wrends.WrenDSContainer;
 import org.wrensecurity.test.wrends.base.StringBufferResultCallback;
 
@@ -55,7 +55,7 @@ public class LdapToolsTest {
         }
 
         // Delete entry
-        ExecResult deleteResult = ldapDelete(wrends, "uid=user.0,ou=People," + BASE_DN);
+        ExecResult deleteResult = WrenDSCommands.ldapDelete(wrends, "uid=user.0,ou=People," + BASE_DN);
         assertSuccess(deleteResult, "Failed to delete entry");
 
         // Verify entry is gone
