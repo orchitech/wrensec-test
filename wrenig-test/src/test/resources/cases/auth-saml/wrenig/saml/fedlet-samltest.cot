@@ -1,0 +1,5 @@
+sun-fm-cot-status=Active
+cot-name=samltest
+sun-fm-saml2-writerservice-url=
+sun-fm-saml2-readerservice-url=
+sun-fm-trusted-providers=samltest-idp,samltest-sp

@@ -1,0 +1,4 @@
+# Configure SAML federation
+create-cot -e / -t samltest
+import-entity -e / -m realms/samltest-idp-meta.xml -x realms/samltest-idp-extended.xml
+import-entity -e / -m realms/samltest-sp-meta.xml -x realms/samltest-sp-extended.xml

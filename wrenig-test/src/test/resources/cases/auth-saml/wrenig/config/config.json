@@ -1,0 +1,14 @@
+{
+    "handler": {
+        "type": "Router",
+        "name": "_router",
+        "baseURI": "wrenig.wrensecurity.local:8080",
+        "capture": "all"
+    },
+    "router": {
+        "type": "Router",
+        "config": {
+            "scanInterval": "disabled"
+        }
+    }
+}

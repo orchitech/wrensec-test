@@ -1,0 +1,21 @@
+{
+    "name": "01-greeting",
+    "condition": "${matches(request.uri.path, '^/greeting$')}",
+    "handler": {
+        "type": "DispatchHandler",
+        "config": {
+            "bindings": [
+                {
+                    "handler": {
+                        "name": "GreetingHandler",
+                        "type": "StaticResponseHandler",
+                        "config": {
+                            "status": 200,
+                            "entity": "Hello world"
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}

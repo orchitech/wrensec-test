@@ -1,0 +1,20 @@
+{
+    "name": "99-default",
+    "handler": {
+        "type": "DispatchHandler",
+        "config": {
+            "bindings": [
+                {
+                    "handler": {
+                        "name": "NotFoundHandler",
+                        "type": "StaticResponseHandler",
+                        "config": {
+                            "status": 404,
+                            "reason": "Not Found"
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}

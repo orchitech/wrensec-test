@@ -1,0 +1,21 @@
+{
+    "name": "01-env-var",
+    "condition": "${matches(request.uri.path, '^/env-var$')}",
+    "handler": {
+        "type": "DispatchHandler",
+        "config": {
+            "bindings": [
+                {
+                    "handler": {
+                        "name": "EnvVariableHandler",
+                        "type": "StaticResponseHandler",
+                        "config": {
+                            "status": 200,
+                            "entity": "${env['CUSTOM_ENV_VARIABLE']}"
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}

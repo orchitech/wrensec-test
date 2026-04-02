@@ -1,0 +1,8 @@
+services:
+  wrenig:
+    extends:
+      file: ../../base/common-services.yml
+      service: wrenig
+    volumes:
+      - ./config:/srv/wrenig/config
+      - ./scripts:/srv/wrenig/scripts

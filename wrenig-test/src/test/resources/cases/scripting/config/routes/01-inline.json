@@ -1,0 +1,11 @@
+{
+    "name": "01-inline",
+    "condition": "${matches(request.uri.path, '^/inline$')}",
+    "handler": {
+        "type": "ScriptableHandler",
+        "config": {
+            "type": "application/x-groovy",
+            "source": "def response = new Response(Status.OK);response.entity = 'Hello from inline Groovy';return response;"
+        }
+    }
+}

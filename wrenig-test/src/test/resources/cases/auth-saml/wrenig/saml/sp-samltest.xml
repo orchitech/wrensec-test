@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<EntityDescriptor entityID="samltest-sp" xmlns="urn:oasis:names:tc:SAML:2.0:metadata">
+    <SPSSODescriptor AuthnRequestsSigned="true" WantAssertionsSigned="true" protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+        <KeyDescriptor use="signing">
+            <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+                <ds:X509Data>
+                    <ds:X509Certificate>
+                        MIIDaDCCAlCgAwIBAgIDcB/YMA0GCSqGSIb3DQEBCwUAMGUxCzAJBgNVBAYTAlVLMRAwDgYDVQQI
+                        EwdCcmlzdG9sMRAwDgYDVQQHEwdCcmlzdG9sMRIwEAYDVQQKEwlGb3JnZVJvY2sxDzANBgNVBAsT
+                        Bk9wZW5BTTENMAsGA1UEAxMEdGVzdDAeFw0xNjAzMTgxMTU2MjhaFw0yNjAzMTYxMTU2MjhaMGUx
+                        CzAJBgNVBAYTAlVLMRAwDgYDVQQIEwdCcmlzdG9sMRAwDgYDVQQHEwdCcmlzdG9sMRIwEAYDVQQK
+                        EwlGb3JnZVJvY2sxDzANBgNVBAsTBk9wZW5BTTENMAsGA1UEAxMEdGVzdDCCASIwDQYJKoZIhvcN
+                        AQEBBQADggEPADCCAQoCggEBAKNbl89eP6B8kZATNSPe3+OZ3esLx31hjX+dakHtPwXCAaCKqJFw
+                        jwKdxyRuPdsVG+8Dbk3PGhk26aJrSE93EpxeqmQqxNPMeD+N0/8pjkuVYWwPIQ/ts2iTiWOVn7wz
+                        lE4ASfvupqOR5pjuYMWNo/pd4L7QNjUCKoAt9H11HMyiP+6roo/EYgX4AH7OAhfUMncYsopWhkW/
+                        ze9z8wTXc8BAEgDmt8zFCez1CtqJB/MlSBUGDgk8oHYDsHKmx05baBaOBQ8LRGP5SULSbRtu34eL
+                        FootBIn0FvUZSnwTiSpbaHHRgWrMOVm07oSLWBuO3h/bj38zBuuqqVsAK8YuyoECAwEAAaMhMB8w
+                        HQYDVR0OBBYEFHxfAbr6PQ5Xgc+jVx+AGTPnnpWZMA0GCSqGSIb3DQEBCwUAA4IBAQAZBMJ29/2i
+                        dv1ztC6ArHtB4kw/nHHwthXFwtWAN7sRPB8tLW7fD8aJ43RQr5107Bg1Lgkmt+FZxpafqUC/mukj
+                        IzGzbW0COMSOTcWUGss+HxK6M6Fl9aOzKJMct1uOSpPFgjItcGqydGZXR2FH93vXWoAotUwtZ119
+                        IixIdxpOJwYJg0HFn+GEfpU1PmiLfq2/uwqJ0hGCNfNcm9puagzhQrcDFOnolxjnYPSfSkU5wxlG
+                        o99yE5eJwoHXXU7csaZVttmx7sPj1lUENogXUM6JMqzSyEIm1XCOCL8rZJkZ781W5CwZhuJTNzV3
+                        1sBREs8FaaCeksu7Y48BmkUqw6E9
+                    </ds:X509Certificate>
+                </ds:X509Data>
+            </ds:KeyInfo>
+        </KeyDescriptor>
+        <SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="http://wrenig.wrensecurity.local:8080/saml/fedletSloRedirect/metaAlias/sp" ResponseLocation="http://wrenig.wrensecurity.local:8000/authgw/saml/fedletSloRedirect/metaAlias/sp" />
+        <SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="http://wrenig.wrensecurity.local:8080/saml/fedletSloPOST/metaAlias/sp" ResponseLocation="http://wrenig.wrensecurity.local:8000/authgw/saml/fedletSloPOST/metaAlias/sp" />
+        <SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="http://wrenig.wrensecurity.local:8080/saml/fedletSloSoap/metaAlias/sp" />
+        <NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:persistent</NameIDFormat>
+        <NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</NameIDFormat>
+        <AssertionConsumerService isDefault="true" index="0" Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="http://wrenig.wrensecurity.local:8080/saml/fedletapplication/metaAlias/sp" />
+        <AssertionConsumerService index="1" Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact" Location="http://wrenig.wrensecurity.local:8080/saml/fedletapplication/metaAlias/sp" />
+    </SPSSODescriptor>
+</EntityDescriptor>

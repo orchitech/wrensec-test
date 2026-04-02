@@ -1,0 +1,22 @@
+services:
+  wrenig:
+    extends:
+      file: ../../base/common-services.yml
+      service: wrenig
+    volumes:
+      - ./wrenig/config:/srv/wrenig/config
+      - ./wrenig/scripts:/srv/wrenig/scripts
+      - ./wrenig/saml:/srv/wrenig/SAML
+    depends_on:
+      - wrenam
+  wrenam:
+    image: wrensecurity/wrenam:15.2.0
+    entrypoint: "/srv/wrenam/entrypoint.sh"
+    command: ["catalina.sh", "run"]
+    ports:
+      - 8180:8080
+    extra_hosts:
+      - wrenam.wrensecurity.local:127.0.0.1
+    volumes:
+      - ./wrenam/entrypoint.sh:/srv/wrenam/entrypoint.sh:ro
+      - ./wrenam/setup:/srv/wrenam/setup:ro

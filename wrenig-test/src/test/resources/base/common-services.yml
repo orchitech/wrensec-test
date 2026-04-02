@@ -1,0 +1,7 @@
+services:
+  wrenig:
+    image: ${WRENIG_IMAGE:-wrensecurity/wrenig:latest}
+    ports:
+      - 8080:8080
+    extra_hosts:
+      - wrenig.wrensecurity.local:127.0.0.1
