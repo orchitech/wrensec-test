@@ -33,7 +33,7 @@ import tools.jackson.databind.ObjectMapper;
 /**
  * Shared superclass for Wren:AM system tests with common deployment infrastructure.
  *
- * <p>We might want to make this pluggable in the feature so that we can run the same tests
+ * <p>We might want to make this pluggable in the future so that we can run the same tests
  * with different deployment setup (single server, multiple user stores, ...).
  *
  * <p>Currently the platform is started automatically in {@link #setupEnvironment()} lifecycle

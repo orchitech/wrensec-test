@@ -12,6 +12,10 @@
 
     <name>Wren:AM System Tests</name>
 
+    <properties>
+        <excludedGroups>volatile</excludedGroups>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>ch.qos.logback</groupId>

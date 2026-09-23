@@ -52,7 +52,7 @@ public class StsTest extends WrenAMTestBase {
     private static final String DEPLOYMENT_URL_ELEMENT = "username-transformer";
 
     /**
-     * Deployment subpath as catenated by {@code RestSTSInstanceConfig#getDeploymentSubPath}.
+     * Deployment subpath as created by {@code RestSTSInstanceConfig#getDeploymentSubPath}.
      */
     private static final String DEPLOYMENT_SUBPATH = "sts/" + DEPLOYMENT_URL_ELEMENT;
 

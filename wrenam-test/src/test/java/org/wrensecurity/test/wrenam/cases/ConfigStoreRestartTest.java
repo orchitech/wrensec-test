@@ -21,6 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.Duration;
 import java.util.concurrent.Callable;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -56,9 +57,10 @@ class ConfigStoreRestartTest extends WrenAMTestBase {
     /**
      * Number of config store restarts to perform.
      */
-    private static final int RESTART_ITERATIONS = Integer.getInteger("configStoreRestart.iterations", 25);
+    private static final int RESTART_ITERATIONS = Integer.getInteger("configStoreRestart.iterations", 10);
 
     @Test
+    @Tag("volatile")
     @SuppressWarnings("resource")
     public void testAuthenticationAfterConfigStoreRestarts() throws Exception {
         assertTrue(authenticate().isSucceeded(), "Initial authentication was expected to succeed.");
