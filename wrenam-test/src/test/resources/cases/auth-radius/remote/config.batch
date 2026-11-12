@@ -1,0 +1,31 @@
+#
+# The contents of this file are subject to the terms of the Common Development and
+# Distribution License (the License). You may not use this file except in compliance with the
+# License.
+#
+# You can obtain a copy of the License at legal/CDDLv1.1.txt. See the License for the
+# specific language governing permission and limitations under the License.
+#
+# When distributing Covered Software, include this CDDL Header Notice in each file and include
+# the License file at legal/CDDLv1.1.txt. If applicable, add the following below the CDDL
+# Header, with the fields enclosed by brackets [] replaced by your own identifying
+# information: "Portions copyright [year] [name of copyright owner]".
+#
+# Copyright 2026 Wren Security
+#
+
+# Create test realm with the user authenticated over RADIUS
+create-realm --realm auth-radius
+create-identity --realm /auth-radius --idname john --idtype User --datafile setup/auth-radius/remote/user-john.properties
+
+# Single step chain (RADIUS Access-Request -> Access-Accept / Access-Reject)
+create-auth-cfg --name radiusBackend --realm auth-radius
+update-auth-cfg-entr --name radiusBackend --realm auth-radius --entries DataStore|REQUISITE|
+
+# Two step chain (second module inputs are requested via RADIUS Access-Challenge)
+create-auth-instance --name DataStore2 --realm auth-radius --authtype DataStore
+create-auth-cfg --name radiusChallenge --realm auth-radius
+update-auth-cfg-entr --name radiusChallenge --realm auth-radius --entries DataStore|REQUISITE| DataStore2|REQUISITE|
+
+# Enable the RADIUS server (applied by the server when RADIUS client configuration changes)
+set-attr-defs --servicename RadiusServerService --schematype global --attributevalues radiusListenerEnabled=YES
