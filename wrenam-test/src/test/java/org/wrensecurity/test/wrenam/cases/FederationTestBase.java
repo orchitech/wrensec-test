@@ -17,6 +17,7 @@
 package org.wrensecurity.test.wrenam.cases;
 
 import java.util.concurrent.atomic.AtomicBoolean;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.wrensecurity.test.wrenam.base.WrenAMTestBase;
 
@@ -39,22 +40,29 @@ public class FederationTestBase extends WrenAMTestBase {
 
     @BeforeAll
     public static void setupTestFederation() throws Exception {
-        if (SETUP_GUARD.getAndSet(true)) {
-            return;
+        if (!SETUP_GUARD.getAndSet(true)) {
+            // Setup local configuration
+            copySetupData(wrenam1, "federation");
+            importKeystore(wrenam1, "/srv/wrenam/setup/federation/keystore.p12");
+            copySetupData(wrenam2, "federation");
+            importKeystore(wrenam2, "/srv/wrenam/setup/federation/keystore.p12");
+            execBatchConfig(wrenam1, "federation/local/config.batch");
         }
 
-        // Setup local configuration
-        copySetupData(wrenam1, "federation");
-        importKeystore(wrenam1, "/srv/wrenam/setup/federation/keystore.p12");
-        copySetupData(wrenam2, "federation");
-        importKeystore(wrenam2, "/srv/wrenam/setup/federation/keystore.p12");
-        execBatchConfig(wrenam1, "federation/local/config.batch");
-
-        // Setup remote configuration
+        // Setup remote configuration (remote server is started for each test case)
         remote.start();
         copySetupData(remote, "federation");
         importKeystore(remote, "/srv/wrenam/setup/federation/keystore.p12");
         execBatchConfig(remote, "federation/remote/config.batch");
+    }
+
+    /**
+     * Stop the remote Wren:AM so that it does not consume resources needed by other tests and
+     * so that other test cases using it start with a clean configuration.
+     */
+    @AfterAll
+    public static void tearDownTestFederation() {
+        remote.stop();
     }
 
 }
