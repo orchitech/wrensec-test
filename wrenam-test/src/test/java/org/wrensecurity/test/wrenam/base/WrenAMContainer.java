@@ -43,6 +43,10 @@ public class WrenAMContainer extends GenericContainer<WrenAMContainer> {
         withExposedPorts(8080);
         withDefaultWait(Duration.ofMinutes(3));
 
+        // Limit the heap size so that the whole test platform fits into a reasonably sized Docker host
+        // (overrides image default with -Xmx2g)
+        withEnv("CATALINA_OPTS", "-server -Xmx1g -XX:MetaspaceSize=256m -XX:MaxMetaspaceSize=256m");
+
         // The following configuration is from https://github.com/WrenSecurity/wrenam/pull/209
         withCopyFileToContainer(
                 MountableFile.forClasspathResource("/wrenam/config.sh", 0755),

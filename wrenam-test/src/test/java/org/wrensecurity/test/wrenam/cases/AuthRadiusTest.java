@@ -22,6 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.wrensecurity.test.base.support.CustomAssertions.assertSuccess;
 
 import java.time.Duration;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -81,6 +82,15 @@ public class AuthRadiusTest extends WrenAMTestBase {
                 .until(AuthRadiusTest::isRadiusServerListening);
 
         setupTestConfig("auth-radius");
+    }
+
+    /**
+     * Stop the remote Wren:AM so that it does not consume resources needed by other tests and
+     * so that other test cases using it start with a clean configuration.
+     */
+    @AfterAll
+    public void tearDownTestCase() {
+        remote.stop();
     }
 
     /**

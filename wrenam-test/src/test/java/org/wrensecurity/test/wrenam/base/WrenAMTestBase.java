@@ -48,6 +48,11 @@ public abstract class WrenAMTestBase {
 
     protected static final Network network = Network.newNetwork();
 
+    /**
+     * Wren:DS JVM arguments limiting the heap size (JVM default is 25 % of the Docker host memory).
+     */
+    private static final String DS_JAVA_ARGS = "-server -Xmx1g";
+
     @SuppressWarnings({ "rawtypes", "resource" })
     protected static final GenericContainer ingress = new GenericContainer(WrenAMDefaults.HAPROXY_IMAGE_NAME)
             .withNetwork(network)
@@ -62,12 +67,14 @@ public abstract class WrenAMTestBase {
     protected static final WrenDSContainer config1 = new WrenDSContainer()
             .withNetwork(network)
             .withNetworkAliases("config1.wrensecurity.test")
+            .withEnv("OPENDJ_JAVA_ARGS", DS_JAVA_ARGS)
             .withEnv("BASE_DN", WrenAMDefaults.CONFIG_STORE_BASE_DN);
 
     @SuppressWarnings("resource")
     protected static final WrenDSContainer users1 = new WrenDSContainer()
             .withNetwork(network)
             .withNetworkAliases("users1.wrensecurity.test")
+            .withEnv("OPENDJ_JAVA_ARGS", DS_JAVA_ARGS)
             .withEnv("BASE_DN", WrenAMDefaults.USER_STORE_BASE_DN)
             .withInitResources(
                     "/userstore/init/05-config.sh",
